@@ -16,17 +16,73 @@ use Inertia\Inertia;
 |
 */
 
+// Route::get('/', function () {
+//     return Inertia::render('Landing', [
+//         'canLogin' => Route::has('login'),
+//         'canRegister' => Route::has('register'),
+//         'laravelVersion' => Application::VERSION,
+//         'phpVersion' => PHP_VERSION,
+//     ]);
+// });
+
 Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
+    return Inertia::render('Landing');
 });
 
+Route::get('/masuk', function () {
+    return Inertia::render('Auth/Masuk');
+});
+
+Route::get('/daftar', function () {
+    return Inertia::render('Auth/Daftar');
+});
+
+Route::get('/profil', function () {
+    return Inertia::render('Profile');
+});
+
+Route::get('/dashboard-siswa', function () {
+    return Inertia::render('Siswa/DashboardSiswa');
+})->name('dashboard');
+
+Route::get('/referensi-siswa', function () {
+    return Inertia::render('Siswa/ReferensiSiswa');
+})->name('referensi-siswa');
+
+Route::get('/absen-siswa', function () {
+    return Inertia::render('Siswa/AbsenSiswa');
+})->name('absen-siswa');
+
+Route::get('/materi-siswa', function () {
+    return Inertia::render('Siswa/MateriSiswa');
+})->name('materi-siswa');
+
+Route::get('/detail-materi-siswa', function () {
+    return Inertia::render('Siswa/DetailMateriSiswa');
+})->name('detail-materi');
+
+Route::get('/test-siswa', function () {
+    return Inertia::render('Siswa/TestSiswa');
+})->name('test-siswa');
+
+Route::get('/kuis-siswa', function () {
+    return Inertia::render('Siswa/KuisSiswa');
+})->name('kuis-siswa');
+
+Route::get('/tugas-siswa', function () {
+    return Inertia::render('Siswa/TugasSiswa');
+})->name('tugas-siswa');
+
+
+
+
+
+// Route::get('/dashboard', function () {
+//     return Inertia::render('Dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
+
 Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
+    return Inertia::render('Siswa/DashboardSiswa');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
