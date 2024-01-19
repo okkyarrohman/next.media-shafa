@@ -4,6 +4,12 @@ namespace App\Http\Controllers\Guru;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
+use Illuminate\Support\Facades\Storage;
+use App\Models\Soal;
+use App\Models\Kategori;
+
+
 
 class SoalGuruController extends Controller
 {
@@ -12,7 +18,11 @@ class SoalGuruController extends Controller
      */
     public function index()
     {
-        //
+        $soals = Soal::all();
+
+        return Inertia::render('Guru/Soal', [
+            'soals' => $soals
+        ]);
     }
 
     /**
@@ -20,7 +30,9 @@ class SoalGuruController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('Guru/TambahSoal', [
+            'kategoris' => Kategori::all(),
+        ]);
     }
 
     /**
@@ -28,7 +40,22 @@ class SoalGuruController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $soals = new Soal();
+        $soals->kategori_id = $request->kategori_id;
+        $soals->nama = $request->nama;
+
+        // Request column input type file
+        if ($request->hasFile('gambar')) {
+            $gambar = $request->file('gambar');
+            $extension = $gambar->getClientOriginalName();
+            $gambarName = date('YmdHis') . "." . $extension;
+            $gambar->move(storage_path('app/public/Soal/gambar/'), $gambarName);
+            $soals->gambar = $gambarName;
+        }
+
+        $soals->save();
+
+        return redirect()->route('soal-kuis.index');
     }
 
     /**
@@ -60,6 +87,14 @@ class SoalGuruController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $soals = Soal::find($id)->get();
+
+        if (Storage::exists('public/Soal/gambar/' . $soals->gambar)) {
+            Storage::delete('public/Soal/gambar/' . $soals->gambar);
+        }
+
+        $soals->delete();
+
+        return redirect()->route('soal-kuis.index');
     }
 }
