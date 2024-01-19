@@ -4,21 +4,24 @@ namespace App\Http\Controllers\Guru;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Materi;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Storage;
+use App\Models\Soal;
+use App\Models\Kategori;
 
-class MateriGuruController extends Controller
+
+
+class SoalGuruController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $materis = Materi::all();
+        $soals = Soal::all();
 
-        return Inertia::render('Guru/Materi', [
-            'materis' => $materis
+        return Inertia::render('Guru/Soal', [
+            'soals' => $soals
         ]);
     }
 
@@ -27,8 +30,9 @@ class MateriGuruController extends Controller
      */
     public function create()
     {
-
-        return Inertia::render('Guru/TambahMateri');
+        return Inertia::render('Guru/TambahSoal', [
+            'kategoris' => Kategori::all(),
+        ]);
     }
 
     /**
@@ -36,21 +40,22 @@ class MateriGuruController extends Controller
      */
     public function store(Request $request)
     {
-        $materis = new Materi();
-        $materis->nama = $request->nama;
+        $soals = new Soal();
+        $soals->kategori_id = $request->kategori_id;
+        $soals->nama = $request->nama;
 
         // Request column input type file
-        if ($request->hasFile('file')) {
-            $file = $request->file('file');
-            $extension = $file->getClientOriginalName();
-            $fileName = date('YmdHis') . "." . $extension;
-            $file->move(storage_path('app/public/Materi/file/'), $fileName);
-            $materis->file = $fileName;
+        if ($request->hasFile('gambar')) {
+            $gambar = $request->file('gambar');
+            $extension = $gambar->getClientOriginalName();
+            $gambarName = date('YmdHis') . "." . $extension;
+            $gambar->move(storage_path('app/public/Soal/gambar/'), $gambarName);
+            $soals->gambar = $gambarName;
         }
 
-        $materis->save();
+        $soals->save();
 
-        return redirect()->route('materi-guru.index');
+        return redirect()->route('soal-kuis.index');
     }
 
     /**
@@ -82,14 +87,14 @@ class MateriGuruController extends Controller
      */
     public function destroy(string $id)
     {
-        $materis = Materi::find($id)->get();
+        $soals = Soal::find($id)->get();
 
-        if (Storage::exists('public/Materi/file/' . $materis->file)) {
-            Storage::delete('public/Materi/file/' . $materis->file);
+        if (Storage::exists('public/Soal/gambar/' . $soals->gambar)) {
+            Storage::delete('public/Soal/gambar/' . $soals->gambar);
         }
 
-        $materis->delete();
+        $soals->delete();
 
-        return redirect()->route('materi-guru.index');
+        return redirect()->route('soal-kuis.index');
     }
 }
