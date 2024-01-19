@@ -50,6 +50,8 @@ class ProyekController extends Controller
             $hasilProyeks->jawabanFile = $jawabanFileName;
         }
         $hasilProyeks->save();
+
+        return redirect()->route('proyek.index');
     }
 
     /**
