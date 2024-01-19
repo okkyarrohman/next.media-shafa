@@ -34,7 +34,11 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(RouteServiceProvider::HOME);
+        if ($request->hasRole('guru')) {
+            return redirect()->route('dashboard-guru.index');
+        } else if ($request->hasRole('siswa')) {
+            return redirect()->route('dashboard.index');
+        }
     }
 
     /**

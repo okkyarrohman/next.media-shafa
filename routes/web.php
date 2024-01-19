@@ -1,5 +1,18 @@
 <?php
 
+use App\Http\Controllers\Guru\DashboardGuruController;
+use App\Http\Controllers\Guru\KategoriGuruController;
+use App\Http\Controllers\Guru\MateriGuruController;
+use App\Http\Controllers\Guru\ProyekGuruController;
+use App\Http\Controllers\Guru\ReferensiGuruController;
+use App\Http\Controllers\Guru\SoalGuruController;
+use App\Http\Controllers\Guru\OpsiGuruController;
+use App\Http\Controllers\Guru\HasilGuruController;
+use App\Http\Controllers\Siswa\DashboardController;
+use App\Http\Controllers\Siswa\KuisController;
+use App\Http\Controllers\Siswa\MateriController;
+use App\Http\Controllers\Siswa\ProyekController;
+use App\Http\Controllers\Siswa\ReferensiController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -74,6 +87,34 @@ Route::get('/tugas-siswa', function () {
 })->name('tugas-siswa');
 
 
+Route::group(['middleware' => 'role:guru'], function () {
+    Route::resources([
+        'dashboard-guru' => DashboardGuruController::class,
+        'materi-guru' => MateriGuruController::class,
+        'referensi-guru' => ReferensiGuruController::class,
+        'proyek-guru' => ProyekGuruController::class,
+
+        // Make Kuis Start Here
+        'kategori-kuis' => KategoriGuruController::class,
+        'soal-kuis' => SoalGuruController::class,
+        'opsi-kuis' => OpsiGuruController::class,
+        'hasil-kuis' => HasilGuruController::class,
+    ]);
+});
+
+Route::group(['middleware' => 'role:siswa'], function () {
+    Route::resources([
+        'dashboard' => DashboardController::class,
+        'materi' => MateriController::class,
+        'referensi' => ReferensiController::class,
+        'proyek' => ProyekController::class,
+        'kuis' => KuisController::class,
+
+    ]);
+});
+
+
+
 
 
 
@@ -91,4 +132,4 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
