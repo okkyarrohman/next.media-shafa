@@ -4,6 +4,10 @@ namespace App\Http\Controllers\Guru;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Opsi;
+use App\Models\Soal;
+use Inertia\Inertia;
+use Illuminate\Support\Facades\Storage;
 
 class OpsiGuruController extends Controller
 {
@@ -12,7 +16,11 @@ class OpsiGuruController extends Controller
      */
     public function index()
     {
-        //
+        $opsis = Opsi::all();
+
+        return Inertia::render('Guru/Opsi', [
+            'opsis' => $opsis
+        ]);
     }
 
     /**
@@ -20,7 +28,9 @@ class OpsiGuruController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('Guru/TambahOpsi', [
+            'soals' => Soal::all(),
+        ]);
     }
 
     /**
@@ -28,7 +38,13 @@ class OpsiGuruController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $opsis = new Opsi();
+        $opsis->soal_id = $request->soal_id;
+        $opsis->nama = $request->nama;
+        $opsis->point = $request->point;
+        $opsis->save();
+
+        return redirect()->route('opsi-kuis.index');
     }
 
     /**
@@ -60,6 +76,8 @@ class OpsiGuruController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $opsis = Opsi::find($id)->get();
+
+        $opsis->delete();
     }
 }
