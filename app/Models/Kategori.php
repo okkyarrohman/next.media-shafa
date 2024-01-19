@@ -15,4 +15,9 @@ class Kategori extends Model
         'kuis',
         'tenggat',
     ];
+
+    public function soal()
+    {
+        return $this->hasMany(Soal::class);
+    }
 }

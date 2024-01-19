@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('soals', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('kategori_id')->nullable();
+            $table->foreign('kategori_id')->references('id')->on('kategoris')->onDelete('cascade');
             $table->timestamps();
         });
     }
