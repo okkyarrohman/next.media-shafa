@@ -14,6 +14,8 @@ class HasilProyek extends Model
     protected $fillable = [
         'user_id',
         'proyek_id',
+        'jawabanText',
+        'jawabanFile',
         'nilai',
         'catatan',
     ];

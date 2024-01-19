@@ -4,6 +4,13 @@ namespace App\Http\Controllers\Siswa;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
+use App\Models\Kategori;
+use App\Models\Soal;
+use App\Models\Opsi;
+use App\Models\Hasil;
+use Illuminate\Support\Facades\Auth;
+
 
 class KuisController extends Controller
 {
@@ -12,7 +19,18 @@ class KuisController extends Controller
      */
     public function index()
     {
-        //
+        $kategoris = Kategori::with(['soal' => function ($query) {
+            $query->inRandomOrder()
+                ->with(['opsi' => function ($query) {
+                    $query->inRandomOrder();
+                }]);
+        }])
+            ->whereHas('soal')
+            ->get();
+
+        return Inertia::render('Siswa/KuisSiswa', [
+            'kategoris' => $kategoris
+        ]);
     }
 
     /**
@@ -28,7 +46,24 @@ class KuisController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $opsi = Opsi::find(array_values($request->input('soal')));
+        $hasil = new Hasil();
+        $hasil->user_id = Auth::user()->id;
+        $hasil->kategori_id = $request->kategori_id;
+        $hasil->total_points = $opsi->sum('point');
+        $hasil->save();
+
+        $soal = $opsi->mapWithKeys(function ($option) {
+            return [
+                $option->soal_id => [
+                    'opsi_id' => $option->id,
+                    'point' => $option->point
+                ],
+            ];
+        })->toArray();
+
+        $hasil->soal()->sync($soal);
+        return redirect()->route('kuis.index');
     }
 
     /**
@@ -36,7 +71,18 @@ class KuisController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $kategoris = Kategori::where('id', $id)->with(['soal' => function ($query) {
+            $query->inRandomOrder()
+                ->with(['opsi' => function ($query) {
+                    $query->inRandomOrder();
+                }]);
+        }])
+            ->whereHas('soal')
+            ->get();
+
+        return Inertia::render('Siswa/SoalKuisSiswa', [
+            'kategoris' => $kategoris
+        ]);
     }
 
     /**
