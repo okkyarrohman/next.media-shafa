@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Guru;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Referensi;
+use Inertia\Inertia;
+use Illuminate\Support\Facades\Storage;
 
 class ReferensiGuruController extends Controller
 {
@@ -12,7 +15,11 @@ class ReferensiGuruController extends Controller
      */
     public function index()
     {
-        //
+        $referensis = Referensi::all();
+
+        return Inertia::render('Guru/Referensi', [
+            'referensis' => $referensis
+        ]);
     }
 
     /**
@@ -20,7 +27,7 @@ class ReferensiGuruController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('Guru/TambahReferensi');
     }
 
     /**
@@ -28,7 +35,20 @@ class ReferensiGuruController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $referensis = new Referensi();
+
+        // Request column input type file
+        if ($request->hasFile('gambar')) {
+            $gambar = $request->file('gambar');
+            $extension = $gambar->getClientOriginalName();
+            $gambarName = date('YmdHis') . "." . $extension;
+            $gambar->move(storage_path('app/public/Referensi/gambar/'), $gambarName);
+            $referensis->gambar = $gambarName;
+        }
+
+        $referensis->save();
+
+        return redirect()->route('referensi-guru.index');
     }
 
     /**
@@ -60,6 +80,14 @@ class ReferensiGuruController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $referensis = Referensi::find($id)->get();
+
+        if (Storage::exists('public/Referensi/gambar/' . $referensis->gambar)) {
+            Storage::delete('public/Referensi/gambar/' . $referensis->gambar);
+        }
+
+        $referensis->delete();
+
+        return redirect()->route('referensi-guru.index');
     }
 }
