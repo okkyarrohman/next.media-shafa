@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Guru;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
+use Illuminate\Support\Facades\Storage;
+use App\Models\Kategori;
 
 class KategoriGuruController extends Controller
 {
@@ -12,7 +15,11 @@ class KategoriGuruController extends Controller
      */
     public function index()
     {
-        //
+        $kategoris = Kategori::all();
+
+        return Inertia::render('Guru/Kategori', [
+            'kategoris' => $kategoris
+        ]);
     }
 
     /**
@@ -20,7 +27,7 @@ class KategoriGuruController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('Guru/TambahKategori');
     }
 
     /**
@@ -28,7 +35,13 @@ class KategoriGuruController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $kategoris = new Kategori();
+        $kategoris->nama = $request->nama;
+        $kategoris->tenggat = $request->tenggat;
+
+        $kategoris->save();
+
+        return redirect()->route('kategori-kuis.index');
     }
 
     /**
@@ -60,6 +73,8 @@ class KategoriGuruController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $kategoris = Kategori::find($id)->get();
+
+        $kategoris->delete();
     }
 }
