@@ -14,7 +14,7 @@ class Proyek extends Model
     protected $fillable = [
         'nama',
         'proses',
-        'pengumpulan',
+        'file',
     ];
 
     public function hasilProyek()

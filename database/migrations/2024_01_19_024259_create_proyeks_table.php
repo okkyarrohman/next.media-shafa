@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nama')->nullable();
             $table->string('proses')->nullable();
-            $table->string('pengumpulan')->nullable();
+            $table->string('file')->nullable();
             $table->timestamps();
         });
     }
