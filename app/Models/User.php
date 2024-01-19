@@ -49,4 +49,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(HasilProyek::class);
     }
+
+    public function hasil()
+    {
+        return $this->hasMany(Hasil::class);
+    }
 }
