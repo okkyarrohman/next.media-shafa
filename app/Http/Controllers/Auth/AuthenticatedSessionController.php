@@ -34,9 +34,9 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        if ($request->hasRole('guru')) {
+        if ($request->user()->hasRole('guru')) {
             return redirect()->route('dashboard-guru.index');
-        } else if ($request->hasRole('siswa')) {
+        } else if ($request->user()->hasRole('siswa')) {
             return redirect()->route('dashboard.index');
         }
     }
