@@ -11,6 +11,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use Inertia\Response;
+use App\Models\User;
+use Spatie\Permission\Models\Role;
+
 
 class AuthenticatedSessionController extends Controller
 {
@@ -19,8 +22,9 @@ class AuthenticatedSessionController extends Controller
      */
     public function create(): Response
     {
-        return Inertia::render('Auth/Masuk', [
+        return Inertia::render('Auth/Login', [
             'canResetPassword' => Route::has('password.request'),
+            'canRegister' => Route::has('register'),
             'status' => session('status'),
         ]);
     }
@@ -28,15 +32,18 @@ class AuthenticatedSessionController extends Controller
     /**
      * Handle an incoming authentication request.
      */
-    public function store(LoginRequest $request): RedirectResponse
+    public function store(LoginRequest $request)
     {
         $request->authenticate();
 
         $request->session()->regenerate();
 
-        if ($request->user()->hasRole('guru')) {
+        $guru = $request->user()->hasRole('guru');
+        $siswa = $request->user()->hasRole('siswa');
+
+        if ($guru) {
             return redirect()->route('dashboard-guru.index');
-        } else if ($request->user()->hasRole('siswa')) {
+        } else if ($siswa) {
             return redirect()->route('dashboard.index');
         }
     }

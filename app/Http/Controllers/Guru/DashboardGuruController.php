@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Guru;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Auth;
+use Spatie\Permission\Models\Role;
 
 class DashboardGuruController extends Controller
 {
@@ -13,6 +15,7 @@ class DashboardGuruController extends Controller
      */
     public function index()
     {
+
         return Inertia::render('Guru/Dashboard');
     }
 
