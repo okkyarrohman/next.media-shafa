@@ -58,7 +58,7 @@ Route::group(['middleware' => 'role:guru'], function () {
 
 Route::group(['middleware' => 'role:siswa'], function () {
     Route::resources([
-        'dashboard' => DashboardController::class,
+        // 'dashboard' => DashboardController::class,
         'materi' => MateriController::class,
         'referensi' => ReferensiController::class,
         'proyek' => ProyekController::class,
@@ -152,9 +152,9 @@ Route::get('/tugas-siswa', function () {
 
 
 // GURU
-Route::get('/dashboard-guru', function () {
-    return Inertia::render('Guru/DashboardGuru');
-})->name('dashboard-guru');
+// Route::get('/dashboard-guru', function () {
+//     return Inertia::render('Guru/DashboardGuru');
+// })->name('dashboard-guru');
 
 Route::get('/referensi-guru', function () {
     return Inertia::render('Guru/ReferensiGuru');
