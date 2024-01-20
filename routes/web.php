@@ -17,6 +17,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,6 +39,37 @@ use Inertia\Inertia;
 //     ]);
 // });
 
+require __DIR__ . '/auth.php';
+
+Route::group(['middleware' => 'role:guru'], function () {
+    Route::resources([
+        'dashboard-guru' => DashboardGuruController::class,
+        'materi-guru' => MateriGuruController::class,
+        'referensi-guru' => ReferensiGuruController::class,
+        'proyek-guru' => ProyekGuruController::class,
+
+        // Make Kuis Start Here
+        'kategori-kuis' => KategoriGuruController::class,
+        'soal-kuis' => SoalGuruController::class,
+        'opsi-kuis' => OpsiGuruController::class,
+        'hasil-kuis' => HasilGuruController::class,
+    ]);
+});
+
+Route::group(['middleware' => 'role:siswa'], function () {
+    Route::resources([
+        'dashboard' => DashboardController::class,
+        'materi' => MateriController::class,
+        'referensi' => ReferensiController::class,
+        'proyek' => ProyekController::class,
+        'kuis' => KuisController::class,
+    ]);
+});
+
+
+
+
+
 Route::get('/', function () {
     return Inertia::render('Landing');
 });
@@ -56,9 +88,9 @@ Route::get('/profil', function () {
 
 
 // SISWA
-Route::get('/dashboard-siswa', function () {
-    return Inertia::render('Siswa/DashboardSiswa');
-})->name('dashboard');
+// Route::get('/dashboard-siswa', function () {
+//     return Inertia::render('Siswa/DashboardSiswa');
+// })->name('dashboard');
 
 Route::get('/referensi-siswa', function () {
     return Inertia::render('Siswa/ReferensiSiswa');
@@ -116,36 +148,12 @@ Route::get('/tugas-siswa', function () {
     return Inertia::render('Siswa/TugasSiswa');
 })->name('tugas-siswa');
 
-Route::group(['middleware' => 'role:guru'], function () {
-    Route::resources([
-        'dashboard-guru' => DashboardGuruController::class,
-        'materi-guru' => MateriGuruController::class,
-        'referensi-guru' => ReferensiGuruController::class,
-        'proyek-guru' => ProyekGuruController::class,
 
-        // Make Kuis Start Here
-        'kategori-kuis' => KategoriGuruController::class,
-        'soal-kuis' => SoalGuruController::class,
-        'opsi-kuis' => OpsiGuruController::class,
-        'hasil-kuis' => HasilGuruController::class,
-    ]);
-});
-
-Route::group(['middleware' => 'role:siswa'], function () {
-    Route::resources([
-        'dashboard' => DashboardController::class,
-        'materi' => MateriController::class,
-        'referensi' => ReferensiController::class,
-        'proyek' => ProyekController::class,
-        'kuis' => KuisController::class,
-
-    ]);
-});
 
 // GURU
-Route::get('/dashboard-guru', function () {
-    return Inertia::render('Guru/DashboardGuru');
-})->name('dashboard-guru');
+// Route::get('/dashboard-guru', function () {
+//     return Inertia::render('Guru/DashboardGuru');
+// })->name('dashboard-guru');
 
 Route::get('/referensi-guru', function () {
     return Inertia::render('Guru/ReferensiGuru');
@@ -185,14 +193,12 @@ Route::get('/hasil-tugas-guru', function () {
 //     return Inertia::render('Dashboard');
 // })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Siswa/DashboardSiswa');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return Inertia::render('Siswa/DashboardSiswa');
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-
-require __DIR__ . '/auth.php';

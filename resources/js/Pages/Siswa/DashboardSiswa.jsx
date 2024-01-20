@@ -7,10 +7,15 @@ import {
     iconTest,
     logoNextMedia,
 } from "../../../assets";
+import { useEffect } from "react";
 
-export default function DashboardSiswa() {
+export default function DashboardSiswa({ auth }) {
+    useEffect(() => {
+        console.log(auth);
+    }, []);
+
     return (
-        <MainLayout>
+        <MainLayout auth={auth}>
             <Head title="Dashboard" />
             <img
                 className="w-60 absolute right-0 top-0"
@@ -44,7 +49,7 @@ export default function DashboardSiswa() {
                         <span>MATERI</span>
                     </button>
                 </Link>
-                <Link href={route("referensi-siswa")}>
+                <Link href={route("referensi.index")}>
                     <button>
                         <img
                             className="w-36 mb-10"

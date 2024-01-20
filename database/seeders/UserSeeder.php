@@ -18,8 +18,7 @@ class UserSeeder extends Seeder
             'email' => 'guru@media.com',
             'password' => bcrypt('guru123'),
         ]);
-
-        $guru->assignRole('guru');
+        $guru->syncRoles('guru');
 
         $siswa = User::create([
             'name' => 'siswa',
@@ -27,6 +26,6 @@ class UserSeeder extends Seeder
             'password' => bcrypt('siswa123'),
         ]);
 
-        $siswa->assignRole('siswa');
+        $siswa->syncRoles('siswa');
     }
 }

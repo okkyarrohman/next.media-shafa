@@ -16,7 +16,7 @@ export default function Sidebar({ auth }) {
                     <li>
                         <Link
                             className="flex items-center gap-2"
-                            href={route("dashboard")}
+                            href={route("dashboard.index")}
                         >
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -82,7 +82,7 @@ export default function Sidebar({ auth }) {
                             <li>
                                 <Link
                                     className="flex items-center gap-2"
-                                    href={route("materi-siswa")}
+                                    href={route("materi.index")}
                                 >
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
@@ -104,7 +104,7 @@ export default function Sidebar({ auth }) {
                             <li>
                                 <Link
                                     className="flex items-center gap-2"
-                                    href={route("referensi-siswa")}
+                                    href={route("referensi.index")}
                                 >
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
