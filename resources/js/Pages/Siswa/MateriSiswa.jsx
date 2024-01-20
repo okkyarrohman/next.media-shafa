@@ -7,7 +7,7 @@ export default function MateriSiswa({ auth }) {
     const { materis } = usePage().props;
 
     useEffect(() => {
-        console.log(auth);
+        console.log(materis);
     }, []);
 
     const data = [

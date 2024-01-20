@@ -58,12 +58,11 @@ Route::group(['middleware' => 'role:guru'], function () {
 
 Route::group(['middleware' => 'role:siswa'], function () {
     Route::resources([
-        // 'dashboard' => DashboardController::class,
+        'dashboard' => DashboardController::class,
         'materi' => MateriController::class,
         'referensi' => ReferensiController::class,
         'proyek' => ProyekController::class,
         'kuis' => KuisController::class,
-
     ]);
 });
 

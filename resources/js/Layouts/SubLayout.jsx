@@ -1,7 +1,7 @@
 import Sidebar from "@/Components/General/Sidebar";
 import { useState } from "react";
 
-export default function SubLayout({ children }) {
+export default function SubLayout({ children, auth }) {
     const [viewSidebar, setViewSidebar] = useState(false);
 
     const handleViewSidebar = () => {
@@ -14,7 +14,7 @@ export default function SubLayout({ children }) {
                 <aside>
                     {viewSidebar ? (
                         <>
-                            <Sidebar />
+                            <Sidebar auth={auth} />
                             <button
                                 className="p-1 rounded-r bg-second fixed top-10 left-96"
                                 onClick={handleViewSidebar}

@@ -1,12 +1,7 @@
 import { Link } from "@inertiajs/react";
-import { useEffect } from "react";
 
 export default function Sidebar({ auth }) {
     const url = "https://source.unsplash.com/random/300x300";
-
-    useEffect(() => {
-        console.log(auth);
-    }, []);
 
     return (
         <div className="w-96 h-screen bg-second fixed p-10 z-10">
@@ -21,7 +16,7 @@ export default function Sidebar({ auth }) {
                     <li>
                         <Link
                             className="flex items-center gap-2"
-                            href={route("dashboard")}
+                            href={route("dashboard.index")}
                         >
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -87,7 +82,7 @@ export default function Sidebar({ auth }) {
                             <li>
                                 <Link
                                     className="flex items-center gap-2"
-                                    href={route("materi-siswa")}
+                                    href={route("materi.index")}
                                 >
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
@@ -109,7 +104,7 @@ export default function Sidebar({ auth }) {
                             <li>
                                 <Link
                                     className="flex items-center gap-2"
-                                    href={route("referensi-siswa")}
+                                    href={route("referensi.index")}
                                 >
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
