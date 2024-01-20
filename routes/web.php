@@ -57,9 +57,9 @@ Route::get('/profil', function () {
 
 
 // SISWA
-Route::get('/dashboard-siswa', function () {
-    return Inertia::render('Siswa/DashboardSiswa');
-})->name('dashboard');
+// Route::get('/dashboard-siswa', function () {
+//     return Inertia::render('Siswa/DashboardSiswa');
+// })->name('dashboard');
 
 Route::get('/referensi-siswa', function () {
     return Inertia::render('Siswa/ReferensiSiswa');
@@ -186,9 +186,9 @@ Route::get('/hasil-tugas-guru', function () {
 //     return Inertia::render('Dashboard');
 // })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Siswa/DashboardSiswa');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return Inertia::render('Siswa/DashboardSiswa');
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

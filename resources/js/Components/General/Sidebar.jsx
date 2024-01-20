@@ -1,7 +1,12 @@
 import { Link } from "@inertiajs/react";
+import { useEffect } from "react";
 
 export default function Sidebar({ auth }) {
     const url = "https://source.unsplash.com/random/300x300";
+
+    useEffect(() => {
+        console.log(auth);
+    }, []);
 
     return (
         <div className="w-96 h-screen bg-second fixed p-10 z-10">
