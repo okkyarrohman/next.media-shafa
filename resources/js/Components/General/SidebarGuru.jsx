@@ -1,6 +1,6 @@
 import { Link } from "@inertiajs/react";
 
-export default function Sidebar({ auth }) {
+export default function SidebarGuru() {
     const url = "https://source.unsplash.com/random/300x300";
 
     return (
@@ -9,14 +9,14 @@ export default function Sidebar({ auth }) {
                 <div className="flex items-center gap-6 mb-24">
                     <img className="rounded-full size-24" src={url} alt="" />
                     <p className="text-2xl line-clamp-2 text-white">
-                        {auth.user.name}
+                        Mashi Kreyleight Amsburg Hendrickson
                     </p>
                 </div>
                 <ul className="*:text-2xl *:my-8 *:text-white">
                     <li>
                         <Link
                             className="flex items-center gap-2"
-                            href={route("dashboard")}
+                            href={route("dashboard-guru")}
                         >
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -38,7 +38,7 @@ export default function Sidebar({ auth }) {
                             <li>
                                 <Link
                                     className="flex items-center gap-2"
-                                    href={route("absen-siswa")}
+                                    href={route("absen-guru")}
                                 >
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
@@ -60,7 +60,7 @@ export default function Sidebar({ auth }) {
                             <li>
                                 <Link
                                     className="flex items-center gap-2"
-                                    href={route("test-siswa")}
+                                    href={route("test-guru")}
                                 >
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
@@ -82,7 +82,7 @@ export default function Sidebar({ auth }) {
                             <li>
                                 <Link
                                     className="flex items-center gap-2"
-                                    href={route("materi-siswa")}
+                                    href={route("materi-guru")}
                                 >
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
@@ -104,7 +104,7 @@ export default function Sidebar({ auth }) {
                             <li>
                                 <Link
                                     className="flex items-center gap-2"
-                                    href={route("referensi-siswa")}
+                                    href={route("referensi-guru")}
                                 >
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"

@@ -1,8 +1,15 @@
 import SubLayout from "@/Layouts/SubLayout";
-import { Head, Link } from "@inertiajs/react";
+import { Head, Link, usePage } from "@inertiajs/react";
 import { bgSekolah } from "../../../assets";
+import { useEffect } from "react";
 
-export default function MateriSiswa() {
+export default function MateriSiswa({ auth }) {
+    const { materis } = usePage().props;
+
+    useEffect(() => {
+        console.log(auth);
+    }, []);
+
     const data = [
         {
             judul: "Golden Ratio",

@@ -1,4 +1,3 @@
-import MainLayout from "@/Layouts/MainLayout";
 import { Head, Link } from "@inertiajs/react";
 import {
     iconAbsen,
@@ -7,10 +6,11 @@ import {
     iconTest,
     logoNextMedia,
 } from "../../../assets";
+import MainLayoutGuru from "@/Layouts/MainLayoutGuru";
 
-export default function DashboardSiswa() {
+export default function DashboardGuru() {
     return (
-        <MainLayout>
+        <MainLayoutGuru>
             <Head title="Dashboard" />
             <img
                 className="w-60 absolute right-0 top-0"
@@ -21,13 +21,13 @@ export default function DashboardSiswa() {
                 EVALUASI AKADEMIK
             </h1>
             <div className="flex justify-around">
-                <Link href={route("absen-siswa")}>
+                <Link href={route("absen-guru")}>
                     <button>
                         <img className="w-36 mb-10" src={iconAbsen} alt="" />
                         <span>ABSEN</span>
                     </button>
                 </Link>
-                <Link href={route("test-siswa")}>
+                <Link href={route("test-guru")}>
                     <button>
                         <img className="w-36 mb-10" src={iconTest} alt="" />
                         <span>TEST</span>
@@ -38,13 +38,13 @@ export default function DashboardSiswa() {
                 SUMBER BELAJAR
             </h1>
             <div className="flex justify-around">
-                <Link href={route("materi.index")}>
+                <Link href={route("materi-guru")}>
                     <button>
                         <img className="w-36 mb-10" src={iconMateri} alt="" />
                         <span>MATERI</span>
                     </button>
                 </Link>
-                <Link href={route("referensi-siswa")}>
+                <Link href={route("referensi-guru")}>
                     <button>
                         <img
                             className="w-36 mb-10"
@@ -55,6 +55,6 @@ export default function DashboardSiswa() {
                     </button>
                 </Link>
             </div>
-        </MainLayout>
+        </MainLayoutGuru>
     );
 }
