@@ -33,7 +33,7 @@ export default function Upload({ onDrop, uploadedFiles, height }) {
     return (
         <div
             className={`w-full ${
-                height ? height : "h-[33rem]"
+                height ? height : "h-96"
             } bg-transparent rounded-2xl flex items-center justify-center border-dashed border-2 border-first`}
             onDrop={handleDrop}
             onDragOver={handleDragOver}

@@ -54,6 +54,8 @@ Route::get('/profil', function () {
     return Inertia::render('Profile');
 });
 
+
+// SISWA
 Route::get('/dashboard-siswa', function () {
     return Inertia::render('Siswa/DashboardSiswa');
 })->name('dashboard');
@@ -82,10 +84,37 @@ Route::get('/kuis-siswa', function () {
     return Inertia::render('Siswa/KuisSiswa');
 })->name('kuis-siswa');
 
+Route::get('/soal-kuis-siswa', function () {
+    return Inertia::render('Siswa/SoalKuisSiswa');
+})->name('soal-kuis-siswa');
+
+Route::get('/proyek-siswa', function () {
+    return Inertia::render('Siswa/ProyekSiswa');
+})->name('proyek-siswa');
+
+Route::get('/proyek-siswa/detail', function () {
+    return Inertia::render('Siswa/DetailProyekSiswa');
+})->name('detail-proyek-siswa');
+
+Route::get('/proyek-siswa/tahap-1', function () {
+    return Inertia::render('Siswa/TahapSatuProyekSiswa');
+})->name('tahap-1-proyek-siswa');
+
+Route::get('/proyek-siswa/tahap-2', function () {
+    return Inertia::render('Siswa/TahapDuaProyekSiswa');
+})->name('tahap-2-proyek-siswa');
+
+Route::get('/proyek-siswa/tahap-3', function () {
+    return Inertia::render('Siswa/TahapTigaProyekSiswa');
+})->name('tahap-3-proyek-siswa');
+
+Route::get('/proyek-siswa/tahap-4', function () {
+    return Inertia::render('Siswa/TahapEmpatProyekSiswa');
+})->name('tahap-4-proyek-siswa');
+
 Route::get('/tugas-siswa', function () {
     return Inertia::render('Siswa/TugasSiswa');
 })->name('tugas-siswa');
-
 
 Route::group(['middleware' => 'role:guru'], function () {
     Route::resources([
@@ -113,8 +142,42 @@ Route::group(['middleware' => 'role:siswa'], function () {
     ]);
 });
 
+// GURU
+Route::get('/dashboard-guru', function () {
+    return Inertia::render('Guru/DashboardGuru');
+})->name('dashboard-guru');
 
+Route::get('/referensi-guru', function () {
+    return Inertia::render('Guru/ReferensiGuru');
+})->name('referensi-guru');
 
+Route::get('/absen-guru', function () {
+    return Inertia::render('Guru/AbsenGuru');
+})->name('absen-guru');
+
+Route::get('/materi-guru', function () {
+    return Inertia::render('Guru/MateriGuru');
+})->name('materi-guru');
+
+Route::get('/detail-materi-guru', function () {
+    return Inertia::render('Guru/DetailMateriGuru');
+})->name('detail-materi-guru');
+
+Route::get('/test-guru', function () {
+    return Inertia::render('Guru/TestGuru');
+})->name('test-guru');
+
+Route::get('/kuis-guru', function () {
+    return Inertia::render('Guru/KuisGuru');
+})->name('kuis-guru');
+
+Route::get('/tugas-guru', function () {
+    return Inertia::render('Guru/TugasGuru');
+})->name('tugas-guru');
+
+Route::get('/hasil-tugas-guru', function () {
+    return Inertia::render('Guru/HasilTugasSiswaGuru');
+})->name('hasil-tugas');
 
 
 

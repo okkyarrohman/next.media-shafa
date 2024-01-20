@@ -18,7 +18,7 @@ class MateriController extends Controller
         $materis = Materi::all();
 
         return Inertia::render('Siswa/MateriSiswa', [
-            'materis'   => $materis,
+            'materis' => $materis,
         ]);
     }
 
