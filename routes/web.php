@@ -100,14 +100,6 @@ Route::get('/absen-siswa', function () {
     return Inertia::render('Siswa/AbsenSiswa');
 })->name('absen-siswa');
 
-Route::get('/materi-siswa', function () {
-    return Inertia::render('Siswa/MateriSiswa');
-})->name('materi-siswa');
-
-Route::get('/detail-materi-siswa', function () {
-    return Inertia::render('Siswa/DetailMateriSiswa');
-})->name('detail-materi');
-
 Route::get('/test-siswa', function () {
     return Inertia::render('Siswa/TestSiswa');
 })->name('test-siswa');

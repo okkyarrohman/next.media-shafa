@@ -1,39 +1,12 @@
 import SubLayout from "@/Layouts/SubLayout";
 import { Head, Link } from "@inertiajs/react";
 
-export default function TestSiswa() {
-    const data = [
-        {
-            no: 1,
-            nama: "Kuis 1",
-            nilai: 80,
-            link: "kuis-siswa",
-        },
-        {
-            no: 2,
-            nama: "Kuis 2",
-            nilai: 100,
-            link: "kuis-siswa",
-        },
-        {
-            no: 3,
-            nama: "Tugas 1",
-            nilai: 0,
-            link: "tugas-siswa",
-        },
-        {
-            no: 4,
-            nama: "Kuis 3",
-            nilai: 10,
-            link: "kuis-siswa",
-        },
-    ];
-
+export default function TestSiswa({ auth }) {
     return (
-        <SubLayout>
+        <SubLayout auth={auth}>
             <Head title="Test" />
             <h1 className="font-medium text-4xl text-center mb-24">TEST</h1>
-            {/* Conatiner Kuis */}
+            {/* Container Kuis */}
             <div className="flex justify-evenly">
                 <div className="w-[30rem]">
                     <div className="flex items-center justify-between h-56 bg-[#A3A3A3] px-8">
@@ -56,23 +29,25 @@ export default function TestSiswa() {
                             />
                         </svg>
                     </div>
-                    <button className="flex justify-around items-center bg-[#4E4747] py-6 w-full text-white text-lg">
-                        Daftar Kuis
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 0 24 24"
-                            fill="currentColor"
-                            className="w-16 h-16"
-                        >
-                            <path
-                                fillRule="evenodd"
-                                d="M16.5 3.75a1.5 1.5 0 0 1 1.5 1.5v13.5a1.5 1.5 0 0 1-1.5 1.5h-6a1.5 1.5 0 0 1-1.5-1.5V15a.75.75 0 0 0-1.5 0v3.75a3 3 0 0 0 3 3h6a3 3 0 0 0 3-3V5.25a3 3 0 0 0-3-3h-6a3 3 0 0 0-3 3V9A.75.75 0 1 0 9 9V5.25a1.5 1.5 0 0 1 1.5-1.5h6Zm-5.03 4.72a.75.75 0 0 0 0 1.06l1.72 1.72H2.25a.75.75 0 0 0 0 1.5h10.94l-1.72 1.72a.75.75 0 1 0 1.06 1.06l3-3a.75.75 0 0 0 0-1.06l-3-3a.75.75 0 0 0-1.06 0Z"
-                                clipRule="evenodd"
-                            />
-                        </svg>
-                    </button>
+                    <Link href={route("kuis.index")}>
+                        <button className="flex justify-around items-center bg-[#4E4747] py-6 w-full text-white text-lg">
+                            Daftar Kuis
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 24 24"
+                                fill="currentColor"
+                                className="w-16 h-16"
+                            >
+                                <path
+                                    fillRule="evenodd"
+                                    d="M16.5 3.75a1.5 1.5 0 0 1 1.5 1.5v13.5a1.5 1.5 0 0 1-1.5 1.5h-6a1.5 1.5 0 0 1-1.5-1.5V15a.75.75 0 0 0-1.5 0v3.75a3 3 0 0 0 3 3h6a3 3 0 0 0 3-3V5.25a3 3 0 0 0-3-3h-6a3 3 0 0 0-3 3V9A.75.75 0 1 0 9 9V5.25a1.5 1.5 0 0 1 1.5-1.5h6Zm-5.03 4.72a.75.75 0 0 0 0 1.06l1.72 1.72H2.25a.75.75 0 0 0 0 1.5h10.94l-1.72 1.72a.75.75 0 1 0 1.06 1.06l3-3a.75.75 0 0 0 0-1.06l-3-3a.75.75 0 0 0-1.06 0Z"
+                                    clipRule="evenodd"
+                                />
+                            </svg>
+                        </button>
+                    </Link>
                 </div>
-                {/* Conatiner Proyek */}
+                {/* Container Proyek */}
                 <div className="w-[30rem]">
                     <div className="flex items-center justify-between h-56 bg-[#F26969] px-8">
                         <div className="text-white flex flex-col justify-center gap-6">
@@ -94,21 +69,23 @@ export default function TestSiswa() {
                             />
                         </svg>
                     </div>
-                    <button className="flex justify-around items-center bg-[#CD3E46] py-6 w-full text-white text-lg">
-                        Daftar Kuis
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 0 24 24"
-                            fill="currentColor"
-                            className="w-16 h-16"
-                        >
-                            <path
-                                fillRule="evenodd"
-                                d="M16.5 3.75a1.5 1.5 0 0 1 1.5 1.5v13.5a1.5 1.5 0 0 1-1.5 1.5h-6a1.5 1.5 0 0 1-1.5-1.5V15a.75.75 0 0 0-1.5 0v3.75a3 3 0 0 0 3 3h6a3 3 0 0 0 3-3V5.25a3 3 0 0 0-3-3h-6a3 3 0 0 0-3 3V9A.75.75 0 1 0 9 9V5.25a1.5 1.5 0 0 1 1.5-1.5h6Zm-5.03 4.72a.75.75 0 0 0 0 1.06l1.72 1.72H2.25a.75.75 0 0 0 0 1.5h10.94l-1.72 1.72a.75.75 0 1 0 1.06 1.06l3-3a.75.75 0 0 0 0-1.06l-3-3a.75.75 0 0 0-1.06 0Z"
-                                clipRule="evenodd"
-                            />
-                        </svg>
-                    </button>
+                    <Link href={route("proyek.index")}>
+                        <button className="flex justify-around items-center bg-[#CD3E46] py-6 w-full text-white text-lg">
+                            Daftar Proyek
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 24 24"
+                                fill="currentColor"
+                                className="w-16 h-16"
+                            >
+                                <path
+                                    fillRule="evenodd"
+                                    d="M16.5 3.75a1.5 1.5 0 0 1 1.5 1.5v13.5a1.5 1.5 0 0 1-1.5 1.5h-6a1.5 1.5 0 0 1-1.5-1.5V15a.75.75 0 0 0-1.5 0v3.75a3 3 0 0 0 3 3h6a3 3 0 0 0 3-3V5.25a3 3 0 0 0-3-3h-6a3 3 0 0 0-3 3V9A.75.75 0 1 0 9 9V5.25a1.5 1.5 0 0 1 1.5-1.5h6Zm-5.03 4.72a.75.75 0 0 0 0 1.06l1.72 1.72H2.25a.75.75 0 0 0 0 1.5h10.94l-1.72 1.72a.75.75 0 1 0 1.06 1.06l3-3a.75.75 0 0 0 0-1.06l-3-3a.75.75 0 0 0-1.06 0Z"
+                                    clipRule="evenodd"
+                                />
+                            </svg>
+                        </button>
+                    </Link>
                 </div>
             </div>
         </SubLayout>
