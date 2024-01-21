@@ -67,10 +67,10 @@ class ProyekController extends Controller
      */
     public function edit(string $id)
     {
-        $hasiProyeks = HasilProyek::where('proyek_id', $id)->get();
+        $hasilProyeks = HasilProyek::where('proyek_id', $id)->get();
 
         return Inertia::render('Siswa/EditHasilProyek', [
-            'hasiProyeks' => $hasiProyeks
+            'hasilProyeks' => $hasilProyeks
         ]);
     }
 

@@ -1,7 +1,7 @@
 import SidebarGuru from "@/Components/General/SidebarGuru";
 import { useState } from "react";
 
-export default function SubLayoutGuru({ children }) {
+export default function SubLayoutGuru({ children, auth }) {
     const [viewSidebar, setViewSidebar] = useState(false);
 
     const handleViewSidebar = () => {
@@ -14,7 +14,7 @@ export default function SubLayoutGuru({ children }) {
                 <aside>
                     {viewSidebar ? (
                         <>
-                            <SidebarGuru />
+                            <SidebarGuru auth={auth} />
                             <button
                                 className="p-1 rounded-r bg-second fixed top-10 left-96"
                                 onClick={handleViewSidebar}

@@ -8,9 +8,9 @@ import {
 } from "../../../assets";
 import MainLayoutGuru from "@/Layouts/MainLayoutGuru";
 
-export default function DashboardGuru() {
+export default function DashboardGuru({ auth }) {
     return (
-        <MainLayoutGuru>
+        <MainLayoutGuru auth={auth}>
             <Head title="Dashboard" />
             <img
                 className="w-60 absolute right-0 top-0"
@@ -38,13 +38,13 @@ export default function DashboardGuru() {
                 SUMBER BELAJAR
             </h1>
             <div className="flex justify-around">
-                <Link href={route("materi-guru")}>
+                <Link href={route("materi-guru.index")}>
                     <button>
                         <img className="w-36 mb-10" src={iconMateri} alt="" />
                         <span>MATERI</span>
                     </button>
                 </Link>
-                <Link href={route("referensi-guru")}>
+                <Link href={route("referensi-guru.index")}>
                     <button>
                         <img
                             className="w-36 mb-10"

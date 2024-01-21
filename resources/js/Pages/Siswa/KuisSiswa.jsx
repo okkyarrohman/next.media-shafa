@@ -1,27 +1,19 @@
 import SubLayout from "@/Layouts/SubLayout";
-import { Head, Link } from "@inertiajs/react";
+import { Head, Link, usePage } from "@inertiajs/react";
+import { useEffect } from "react";
 
-export default function KuisSiswa() {
-    const data = [
-        {
-            no: 1,
-            nama: "Kuis 1",
-            nilai: 80,
-            link: "soal-kuis-siswa",
-        },
-        {
-            no: 2,
-            nama: "Kuis 2",
-            nilai: 100,
-            link: "soal-kuis-siswa",
-        },
-    ];
+export default function KuisSiswa({ auth }) {
+    const { kategoris } = usePage().props;
+
+    useEffect(() => {
+        console.log(kategoris);
+    }, []);
 
     return (
-        <SubLayout>
+        <SubLayout auth={auth}>
             <Head title="Kuis" />
             <h1 className="font-medium text-4xl text-center mb-24">KUIS</h1>
-            {data.map((item, index) => {
+            {kategoris.map((kategori, index) => {
                 return (
                     <div
                         key={index}
@@ -30,16 +22,16 @@ export default function KuisSiswa() {
                         <div className="px-8  flex items-center justify-between">
                             <div className="flex items-center gap-12">
                                 <div className="size-14 rounded-full bg-yellow-500 flex justify-center items-center font-semibold text-lg">
-                                    {item.no}
+                                    {index + 1}
                                 </div>
-                                <Link href={route(item.link)}>
+                                <Link href={route("kuis.show", kategori.id)}>
                                     <p className="text-lg uppercase">
-                                        {item.nama}
+                                        {kategori.kuis}
                                     </p>
                                 </Link>
                             </div>
                             <p className="text-lg py-2 px-4 bg-first rounded-full">
-                                {item.nilai}/100
+                                75/100
                             </p>
                         </div>
                     </div>

@@ -43,7 +43,7 @@ class MateriController extends Controller
      */
     public function show(string $id)
     {
-        $materis = Materi::find($id)->get();
+        $materis = Materi::where('id',$id)->get();
 
         return Inertia::render('Siswa/LihatMateriSiswa', [
             'materis' => $materis

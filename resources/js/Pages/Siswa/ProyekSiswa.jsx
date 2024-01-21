@@ -1,25 +1,15 @@
 import ProgressBar from "@/Components/General/ProgressBar";
 import SubLayout from "@/Layouts/SubLayout";
-import { Head, Link } from "@inertiajs/react";
+import { Head, Link, usePage } from "@inertiajs/react";
+import { useEffect } from "react";
 import Swal from "sweetalert2";
 
-export default function ProyekSiswa() {
-    const data = [
-        {
-            no: 1,
-            nama: "Proyek 1",
-            presentase: 50,
-            nilai: 80,
-            link: "detail-proyek-siswa",
-        },
-        {
-            no: 2,
-            nama: "Proyek 2",
-            presentase: 10,
-            nilai: 100,
-            link: "detail-proyek-siswa",
-        },
-    ];
+export default function ProyekSiswa({ auth }) {
+    const { proyeks } = usePage().props;
+
+    useEffect(() => {
+        console.log(proyeks);
+    }, []);
 
     const popupFeedback = () => {
         Swal.fire({
@@ -33,10 +23,10 @@ export default function ProyekSiswa() {
     };
 
     return (
-        <SubLayout>
+        <SubLayout auth={auth}>
             <Head title="Proyek" />
             <h1 className="font-medium text-4xl text-center mb-24">PROYEK</h1>
-            {data.map((item, index) => {
+            {proyeks.map((proyek, index) => {
                 return (
                     <div
                         key={index}
@@ -45,15 +35,15 @@ export default function ProyekSiswa() {
                         <div className="px-8  flex items-center justify-between">
                             <div className="flex items-center gap-12">
                                 <div className="size-14 rounded-full bg-yellow-500 flex justify-center items-center font-semibold text-lg">
-                                    {item.no}
+                                    {index + 1}
                                 </div>
-                                <Link href={route(item.link)}>
-                                    <p className="text-lg uppercase">
-                                        {item.nama}
+                                <Link href={route("proyek.show", proyek.id)}>
+                                    <p className="text-lg uppercase w-56 line-clamp-1">
+                                        {proyek.nama}
                                     </p>
                                 </Link>
                                 <div className="w-56">
-                                    <ProgressBar persentase={item.presentase} />
+                                    <ProgressBar persentase={75} />
                                 </div>
                             </div>
                             <div className="ml-auto flex items-center w-36 justify-between">
@@ -73,7 +63,7 @@ export default function ProyekSiswa() {
                                     </svg>
                                 </button>
                                 <p className="text-lg py-2 px-4 bg-first rounded-full">
-                                    {item.nilai}/100
+                                    75/100
                                 </p>
                             </div>
                         </div>

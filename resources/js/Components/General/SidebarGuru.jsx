@@ -1,6 +1,6 @@
 import { Link } from "@inertiajs/react";
 
-export default function SidebarGuru() {
+export default function SidebarGuru({ auth }) {
     const url = "https://source.unsplash.com/random/300x300";
 
     return (
@@ -9,14 +9,14 @@ export default function SidebarGuru() {
                 <div className="flex items-center gap-6 mb-24">
                     <img className="rounded-full size-24" src={url} alt="" />
                     <p className="text-2xl line-clamp-2 text-white">
-                        Mashi Kreyleight Amsburg Hendrickson
+                        {auth.user.name}
                     </p>
                 </div>
                 <ul className="*:text-2xl *:my-8 *:text-white">
                     <li>
                         <Link
                             className="flex items-center gap-2"
-                            href={route("dashboard-guru")}
+                            href={route("dashboard-guru.index")}
                         >
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -82,7 +82,7 @@ export default function SidebarGuru() {
                             <li>
                                 <Link
                                     className="flex items-center gap-2"
-                                    href={route("materi-guru")}
+                                    href={route("materi-guru.index")}
                                 >
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
@@ -104,7 +104,7 @@ export default function SidebarGuru() {
                             <li>
                                 <Link
                                     className="flex items-center gap-2"
-                                    href={route("referensi-guru")}
+                                    href={route("referensi-guru.index")}
                                 >
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"

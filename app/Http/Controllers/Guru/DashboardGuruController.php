@@ -16,7 +16,7 @@ class DashboardGuruController extends Controller
     public function index()
     {
 
-        return Inertia::render('Guru/Dashboard');
+        return Inertia::render('Guru/DashboardGuru');
     }
 
     /**
