@@ -147,17 +147,17 @@ Route::get('/tugas-siswa', function () {
 //     return Inertia::render('Guru/DashboardGuru');
 // })->name('dashboard-guru');
 
-Route::get('/referensi-guru', function () {
-    return Inertia::render('Guru/ReferensiGuru');
-})->name('referensi-guru');
+// Route::get('/referensi-guru', function () {
+//     return Inertia::render('Guru/ReferensiGuru');
+// })->name('referensi-guru');
 
 Route::get('/absen-guru', function () {
     return Inertia::render('Guru/AbsenGuru');
 })->name('absen-guru');
 
-Route::get('/materi-guru', function () {
-    return Inertia::render('Guru/MateriGuru');
-})->name('materi-guru');
+// Route::get('/materi-guru', function () {
+//     return Inertia::render('Guru/MateriGuru');
+// })->name('materi-guru');
 
 Route::get('/detail-materi-guru', function () {
     return Inertia::render('Guru/DetailMateriGuru');

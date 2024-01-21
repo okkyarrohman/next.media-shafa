@@ -17,7 +17,7 @@ class ReferensiGuruController extends Controller
     {
         $referensis = Referensi::all();
 
-        return Inertia::render('Guru/Referensi', [
+        return Inertia::render('Guru/ReferensiGuru', [
             'referensis' => $referensis
         ]);
     }

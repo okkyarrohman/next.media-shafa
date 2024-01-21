@@ -2,9 +2,9 @@ import SubLayout from "@/Layouts/SubLayout";
 import { Head } from "@inertiajs/react";
 import { placeholderQR } from "../../../assets";
 
-export default function AbsenSiswa() {
+export default function AbsenSiswa({ auth }) {
     return (
-        <SubLayout>
+        <SubLayout auth={auth}>
             <Head title="Absen" />
             <h1 className="font-medium text-4xl text-center mb-24">ABSENSI</h1>
             <img
