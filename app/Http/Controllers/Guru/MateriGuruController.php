@@ -58,7 +58,7 @@ class MateriGuruController extends Controller
      */
     public function show(string $id)
     {
-        $materis = Materi::where('id',$id)->get();
+        $materis = Materi::where('id', $id)->get();
 
         return Inertia::render('Guru/LihatMateriGuru', [
             'materis' => $materis
@@ -86,7 +86,7 @@ class MateriGuruController extends Controller
      */
     public function destroy(string $id)
     {
-        $materis = Materi::find($id)->get();
+        $materis = Materi::find($id)->first();
 
         if (Storage::exists('public/Materi/file/' . $materis->file)) {
             Storage::delete('public/Materi/file/' . $materis->file);
