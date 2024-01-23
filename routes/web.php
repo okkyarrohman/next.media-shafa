@@ -14,10 +14,8 @@ use App\Http\Controllers\Siswa\MateriController;
 use App\Http\Controllers\Siswa\ProyekController;
 use App\Http\Controllers\Siswa\ReferensiController;
 use App\Http\Controllers\ProfileController;
-use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
-use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
