@@ -1,31 +1,18 @@
-import BackButton from "@/Components/General/BackButton";
 import SubLayoutGuru from "@/Layouts/SubLayoutGuru";
 import { Head, Link, router, usePage } from "@inertiajs/react";
 import { useEffect } from "react";
 
-export default function SoalKuisGuru({ auth }) {
-    const { soals } = usePage().props;
-    const kategoriId = localStorage.getItem("ID_KATEGORI_KUIS");
+export default function OpsiKuisGuru({ auth }) {
+    const { opsis } = usePage().props;
+    const soalId = localStorage.getItem("ID_SOAL_KUIS");
 
-    const filteredSoalsById = soals.filter(
-        (soal) => soal.kategori_id == kategoriId
-    );
-
-    useEffect(() => {
-        console.log(soals);
-        console.log("Terfilter", filteredSoalsById);
-    }, []);
-
-    const handleSoalClick = (id) => {
-        localStorage.setItem("ID_SOAL_KUIS", id);
-        router.visit("/opsi-kuis");
-    };
+    const filteredOpsis = opsis.filter((opsi) => opsi.soal_id == soalId);
 
     return (
         <SubLayoutGuru auth={auth}>
             <Head title="Kuis" />
             <div className="flex items-center">
-                <Link href={route("kategori-kuis.index")}>
+                <Link href={route("soal-kuis.index")}>
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
@@ -42,16 +29,16 @@ export default function SoalKuisGuru({ auth }) {
                     </svg>
                 </Link>
                 <h1 className="font-medium text-4xl text-center w-full">
-                    SOAL KUIS
+                    OPSI KUIS
                 </h1>
             </div>
-            <Link href={route("soal-kuis.create")}>
+            <Link href={route("opsi-kuis.create")}>
                 <button className="bg-first text-white py-3 px-10 rounded-full font-medium text-lg w-fit mx-auto block my-12">
-                    Tambah Soal Kuis Baru
+                    Tambah Opsi Kuis Baru
                 </button>
             </Link>
-            {filteredSoalsById.length > 0 ? (
-                filteredSoalsById.map((soal, index) => {
+            {filteredOpsis.length > 0 ? (
+                filteredOpsis.map((opsi, index) => {
                     return (
                         <div
                             key={index}
@@ -62,14 +49,9 @@ export default function SoalKuisGuru({ auth }) {
                                     <div className="size-14 rounded-full bg-yellow-500 flex justify-center items-center font-semibold text-lg">
                                         {index + 1}
                                     </div>
-                                    <button
-                                        type="button"
-                                        onClick={() => handleSoalClick(soal.id)}
-                                    >
-                                        <p className="text-lg uppercase">
-                                            {soal.nama}
-                                        </p>
-                                    </button>
+                                    <p className="text-lg uppercase">
+                                        {opsi.nama}
+                                    </p>
                                 </div>
                                 <div className="flex items-center gap-20">
                                     <p className="text-lg py-2 px-4 flex items-center gap-2">
@@ -84,18 +66,16 @@ export default function SoalKuisGuru({ auth }) {
                                             <path
                                                 strokeLinecap="round"
                                                 strokeLinejoin="round"
-                                                d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5H3.75A1.5 1.5 0 0 0 2.25 6v12a1.5 1.5 0 0 0 1.5 1.5Zm10.5-11.25h.008v.008h-.008V8.25Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z"
+                                                d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z"
                                             />
                                         </svg>
-                                        {soal.gambar == null
-                                            ? "Tidak Ada Gambar"
-                                            : soal.gambar}
+                                        {opsi.point}
                                     </p>
                                     <Link
                                         method="DELETE"
                                         href={route(
-                                            "soal-kuis.destroy",
-                                            soal.id
+                                            "opsi-kuis.destroy",
+                                            opsi.id
                                         )}
                                     >
                                         <button
@@ -138,7 +118,7 @@ export default function SoalKuisGuru({ auth }) {
                     </svg>
 
                     <h1 className="text-5xl font-semibold text-center">
-                        Belum Ada Soal Segera Tambahkan!
+                        Belum Ada Opsi Segera Tambahkan!
                     </h1>
                 </div>
             )}

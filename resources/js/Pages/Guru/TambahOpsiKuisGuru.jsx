@@ -2,56 +2,59 @@ import TextInput from "@/Components/TextInput";
 import SubLayoutGuru from "@/Layouts/SubLayoutGuru";
 import { Head, useForm } from "@inertiajs/react";
 
-export default function TambahKategoriKuisGuru({ auth }) {
+export default function TambahOpsiKuisGuru({ auth }) {
+    const soalId = localStorage.getItem("ID_SOAL_KUIS");
+
     const { data, setData, post } = useForm({
-        kuis: "",
-        tenggat: "",
+        soal_id: soalId,
+        nama: "",
+        point: "",
     });
 
     const handleFormSubmit = (e) => {
         e.preventDefault();
-        post(route("kategori-kuis.store"));
+        post(route("opsi-kuis.store"));
     };
 
     return (
         <SubLayoutGuru auth={auth}>
             <Head title="Kuis" />
             <h1 className="font-medium text-4xl text-center mb-24">
-                TAMBAH KATEGORI KUIS BARU
+                TAMBAH OPSI KUIS BARU
             </h1>
             <form className="w-4/5 mx-auto">
                 <div className="mb-4">
                     <label
                         className="block text-3xl font-semibold mb-2"
-                        htmlFor="kuis"
+                        htmlFor="nama"
                     >
-                        Nama Kuis
+                        Opsi Jawaban
                     </label>
                     <TextInput
-                        id="kuis"
+                        id="nama"
                         type="text"
-                        name="kuis"
-                        placeholder="Masukkan Nama Kuis..."
+                        name="nama"
+                        placeholder="Masukkan Opsi Jawaban..."
                         className="w-full border-[#353535] bg-transparent"
-                        value={data.kuis}
-                        onChange={(e) => setData("kuis", e.target.value)}
+                        value={data.nama}
+                        onChange={(e) => setData("nama", e.target.value)}
                     />
                 </div>
                 <div className="mb-4">
                     <label
                         className="block text-3xl font-semibold mb-2"
-                        htmlFor="tenggat"
+                        htmlFor="point"
                     >
-                        Tenggat Kuis
+                        Poin Opsi
                     </label>
                     <TextInput
-                        id="tenggat"
-                        type="date"
-                        name="tenggat"
-                        placeholder="Masukkan Tenggat Kuis..."
+                        id="point"
+                        type="number"
+                        name="point"
+                        placeholder="Masukkan Poin Opsi..."
                         className="w-full border-[#353535] bg-transparent"
-                        value={data.tenggat}
-                        onChange={(e) => setData("tenggat", e.target.value)}
+                        value={data.point}
+                        onChange={(e) => setData("point", e.target.value)}
                     />
                 </div>
                 <button
