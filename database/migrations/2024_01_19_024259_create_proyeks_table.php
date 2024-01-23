@@ -14,8 +14,14 @@ return new class extends Migration
         Schema::create('proyeks', function (Blueprint $table) {
             $table->id();
             $table->string('nama')->nullable();
-            $table->string('proses')->nullable();
-            $table->string('file')->nullable();
+            $table->string('proses1')->nullable();
+            $table->string('file1')->nullable();
+            $table->string('proses2')->nullable();
+            $table->string('file2')->nullable();
+            $table->string('proses3')->nullable();
+            $table->string('file3')->nullable();
+            $table->string('proses4')->nullable();
+            $table->string('file4')->nullable();
             $table->timestamps();
         });
     }

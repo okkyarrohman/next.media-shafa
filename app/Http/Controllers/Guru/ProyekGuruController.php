@@ -38,15 +38,42 @@ class ProyekGuruController extends Controller
         $proyeks = new Proyek();
 
         $proyeks->nama = $request->nama;
-        $proyeks->proses = $request->proses;
+        $proyeks->proses = $request->proses1;
+        $proyeks->proses = $request->proses2;
+        $proyeks->proses = $request->proses3;
+        $proyeks->proses = $request->proses4;
 
         // Request column input type file
-        if ($request->hasFile('file')) {
-            $file = $request->file('file');
-            $extension = $file->getClientOriginalName();
-            $fileName = date('YmdHis') . "." . $extension;
-            $file->move(storage_path('app/public/Proyek/file/'), $fileName);
-            $proyeks->file = $fileName;
+        if ($request->hasFile('file1')) {
+            $file1 = $request->file('file1');
+            $extension = $file1->getClientOriginalName();
+            $file1Name = date('YmdHis') . "." . $extension;
+            $file1->move(storage_path('app/public/Proyek/file1/'), $file1Name);
+            $proyeks->file1 = $file1Name;
+        }
+
+        if ($request->hasFile('file2')) {
+            $file2 = $request->file('file2');
+            $extension = $file2->getClientOriginalName();
+            $file2Name = date('YmdHis') . "." . $extension;
+            $file2->move(storage_path('app/public/Proyek/file2/'), $file2Name);
+            $proyeks->file2 = $file2Name;
+        }
+
+        if ($request->hasFile('file3')) {
+            $file3 = $request->file('file3');
+            $extension = $file3->getClientOriginalName();
+            $file3Name = date('YmdHis') . "." . $extension;
+            $file3->move(storage_path('app/public/Proyek/file3/'), $file3Name);
+            $proyeks->file3 = $file3Name;
+        }
+
+        if ($request->hasFile('file4')) {
+            $file4 = $request->file('file4');
+            $extension = $file4->getClientOriginalName();
+            $file4Name = date('YmdHis') . "." . $extension;
+            $file4->move(storage_path('app/public/Proyek/file4/'), $file4Name);
+            $proyeks->file4 = $file4Name;
         }
 
         $proyeks->save();
@@ -83,7 +110,7 @@ class ProyekGuruController extends Controller
      */
     public function destroy(string $id)
     {
-        $proyeks = Proyek::find($id)->get();
+        $proyeks = Proyek::find($id)->first();
 
         if (Storage::exists('/public/Proyek/file/' . $proyeks->file)) {
             Storage::delete('/public/Proyek/file/' . $proyeks->file);
