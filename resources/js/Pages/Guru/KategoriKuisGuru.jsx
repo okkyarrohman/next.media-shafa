@@ -17,7 +17,27 @@ export default function KategoriKuisGuru({ auth }) {
     return (
         <SubLayoutGuru auth={auth}>
             <Head title="Kuis" />
-            <h1 className="font-medium text-4xl text-center">KATEGORI KUIS</h1>
+            <div className="flex items-center">
+                <Link href={route("test-guru")}>
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth="1.5"
+                        stroke="currentColor"
+                        className="w-7 h-7"
+                    >
+                        <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"
+                        />
+                    </svg>
+                </Link>
+                <h1 className="font-medium text-4xl text-center w-full">
+                    KATEGORI KUIS
+                </h1>
+            </div>
             <Link href={route("kategori-kuis.create")}>
                 <button className="bg-first text-white py-3 px-10 rounded-full font-medium text-lg w-fit mx-auto block my-12">
                     Tambah Kategori Kuis Baru
