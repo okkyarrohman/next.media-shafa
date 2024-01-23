@@ -86,7 +86,11 @@ class ProyekGuruController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $proyeks = Proyek::findOrFail($id)->get();
+
+        return Inertia::render('View', [
+            'proyeks' => $proyeks
+        ]);
     }
 
     /**

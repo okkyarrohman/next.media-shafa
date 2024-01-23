@@ -40,15 +40,35 @@ class ProyekController extends Controller
         $hasilProyeks = new HasilProyek();
         $hasilProyeks->user_id = $request->user_id;
         $hasilProyeks->proyek_id = $request->proyek_id;
-        $hasilProyeks->jawabanText = $request->jawabanText;
+        $hasilProyeks->answer1 = $request->answer1;
+
         // Request column input type file
-        if ($request->hasFile('jawabanFile')) {
-            $jawabanFile = $request->file('jawabanFile');
-            $extension = $jawabanFile->getClientOriginalName();
-            $jawabanFileName = date('YmdHis') . "." . $extension;
-            $jawabanFile->move(storage_path('app/public/HasilProyek/jawabanFile/'), $jawabanFileName);
-            $hasilProyeks->jawabanFile = $jawabanFileName;
+        if ($request->hasFile('answer2')) {
+            $answer2 = $request->file('answer2');
+            $extension = $answer2->getClientOriginalName();
+            $answer2Name = date('YmdHis') . "." . $extension;
+            $answer2->move(storage_path('app/public/HasilProyek/answer2/'), $answer2Name);
+            $hasilProyeks->answer2 = $answer2Name;
         }
+
+        // Request column input type file
+        if ($request->hasFile('answer3')) {
+            $answer3 = $request->file('answer3');
+            $extension = $answer3->getClientOriginalName();
+            $answer3Name = date('YmdHis') . "." . $extension;
+            $answer3->move(storage_path('app/public/HasilProyek/answer3/'), $answer3Name);
+            $hasilProyeks->answer3 = $answer3Name;
+        }
+
+        // Request column input type file
+        if ($request->hasFile('answer4')) {
+            $answer4 = $request->file('answer4');
+            $extension = $answer4->getClientOriginalName();
+            $answer4Name = date('YmdHis') . "." . $extension;
+            $answer4->move(storage_path('app/public/HasilProyek/answer4/'), $answer4Name);
+            $hasilProyeks->answer4 = $answer4Name;
+        }
+
         $hasilProyeks->save();
 
         return redirect()->route('proyek.index');
@@ -59,11 +79,6 @@ class ProyekController extends Controller
      */
     public function show(string $id)
     {
-        $proyeks = Proyek::findOrFail($id)->get();
-
-        return Inertia::render('View', [
-            'proyeks' => $proyeks
-        ]);
     }
 
     /**
