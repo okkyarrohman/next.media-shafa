@@ -25,8 +25,10 @@ class HasilProyekFactory extends Factory
             'proyek_id' => function () {
                 return Proyek::inRandomOrder()->first();
             },
-            'jawabanText' => $this->faker->sentence(),
-            'jawabanFile' => $this->faker->imageUrl(),
+            'answer1' => $this->faker->sentence(),
+            'answer2' => $this->faker->imageUrl(),
+            'answer3' => $this->faker->imageUrl(),
+            'answer4' => $this->faker->imageUrl(),
             'nilai' => $this->faker->numberBetween(10, 100),
             'catatan' => $this->faker->sentence(),
         ];
