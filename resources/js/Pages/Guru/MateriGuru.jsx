@@ -39,7 +39,7 @@ export default function MateriGuru({ auth }) {
                                 </div>
                             </Link>
                             <Link
-                            method="DELETE"
+                                method="DELETE"
                                 href={route("materi-guru.destroy", materi.id)}
                             >
                                 <button

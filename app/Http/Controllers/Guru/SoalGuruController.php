@@ -20,7 +20,7 @@ class SoalGuruController extends Controller
     {
         $soals = Soal::all();
 
-        return Inertia::render('Guru/Soal', [
+        return Inertia::render('Guru/SoalKuisGuru', [
             'soals' => $soals
         ]);
     }
@@ -30,7 +30,7 @@ class SoalGuruController extends Controller
      */
     public function create()
     {
-        return Inertia::render('Guru/TambahSoal', [
+        return Inertia::render('Guru/TambahSoalKuisGuru', [
             'kategoris' => Kategori::all(),
         ]);
     }
