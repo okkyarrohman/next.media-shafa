@@ -17,7 +17,7 @@ class ProyekController extends Controller
      */
     public function index()
     {
-        $proyeks = Proyek::all();
+        $proyeks = Proyek::with('hasilProyek')->get();
 
         return Inertia::render('Siswa/ProyekSiswa', [
             'proyeks' => $proyeks
@@ -79,9 +79,9 @@ class ProyekController extends Controller
      */
     public function show(string $id)
     {
-        $proyeks = Proyek::findOrFail($id)->get();
+        $proyeks = Proyek::with('hasilProyek')->where('id', $id)->get();
 
-        return Inertia::render('View', [
+        return Inertia::render('Siswa/DetailProyekSiswa', [
             'proyeks' => $proyeks
         ]);
     }
@@ -91,9 +91,12 @@ class ProyekController extends Controller
      */
     public function edit(string $id)
     {
+        $proyeks = Proyek::where('id', $id)->get();
+
         $hasilProyeks = HasilProyek::where('proyek_id', $id)->get();
 
-        return Inertia::render('Siswa/EditHasilProyek', [
+        return Inertia::render('Siswa/TahapanProyekSiswa', [
+            'proyeks' => $proyeks,
             'hasilProyeks' => $hasilProyeks
         ]);
     }
