@@ -38,10 +38,10 @@ class ProyekGuruController extends Controller
         $proyeks = new Proyek();
 
         $proyeks->nama = $request->nama;
-        $proyeks->proses = $request->proses1;
-        $proyeks->proses = $request->proses2;
-        $proyeks->proses = $request->proses3;
-        $proyeks->proses = $request->proses4;
+        $proyeks->proses1 = $request->proses1;
+        $proyeks->proses2 = $request->proses2;
+        $proyeks->proses3 = $request->proses3;
+        $proyeks->proses4 = $request->proses4;
 
         // Request column input type file
         if ($request->hasFile('file1')) {
