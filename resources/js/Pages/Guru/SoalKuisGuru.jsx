@@ -136,7 +136,6 @@ export default function SoalKuisGuru({ auth }) {
                             clipRule="evenodd"
                         />
                     </svg>
-
                     <h1 className="text-5xl font-semibold text-center">
                         Belum Ada Soal Segera Tambahkan!
                     </h1>

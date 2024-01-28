@@ -1,29 +1,19 @@
 import SubLayoutGuru from "@/Layouts/SubLayoutGuru";
-import { Head, Link, router, usePage } from "@inertiajs/react";
+import { Head, Link, usePage } from "@inertiajs/react";
 import { useEffect } from "react";
 
-export default function KategoriKuisGuru({ auth }) {
-    const { kategoris } = usePage().props;
+export default function ProyekGuru({ auth }) {
+    const { proyeks } = usePage().props;
 
     useEffect(() => {
-        console.log(kategoris);
+        console.log(proyeks);
     }, []);
-
-    const handleKategoriClick = (id) => {
-        localStorage.setItem("ID_KATEGORI_KUIS", id);
-        router.visit("/soal-kuis");
-    };
-
-    const handleKategoriHasilClick = (id) => {
-        localStorage.setItem("ID_KATEGORI_KUIS", id);
-        router.visit("/hasil-kuis");
-    };
 
     return (
         <SubLayoutGuru auth={auth}>
-            <Head title="Kuis" />
+            <Head title="Proyek" />
             <div className="flex items-center">
-                <Link href={route("test-guru")}>
+                <Link href={route("test-guru")} as="button">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
@@ -40,17 +30,17 @@ export default function KategoriKuisGuru({ auth }) {
                     </svg>
                 </Link>
                 <h1 className="font-medium text-4xl text-center w-full">
-                    KATEGORI KUIS
+                    PROYEK
                 </h1>
             </div>
             <Link
-                href={route("kategori-kuis.create")}
+                href={route("proyek-guru.create")}
                 as="button"
                 className="bg-first text-white py-3 px-10 rounded-full font-medium text-lg w-fit mx-auto block my-12"
             >
-                Tambah Kategori Kuis Baru
+                Tambah Proyek Baru
             </Link>
-            {kategoris.map((kategori, index) => {
+            {proyeks.map((proyek, index) => {
                 return (
                     <div
                         key={index}
@@ -61,47 +51,28 @@ export default function KategoriKuisGuru({ auth }) {
                                 <div className="size-14 rounded-full bg-yellow-500 flex justify-center items-center font-semibold text-lg">
                                     {index + 1}
                                 </div>
-                                <button
+                                {/* <button
                                     onClick={() =>
-                                        handleKategoriClick(kategori.id)
+                                        handleKategoriClick(proyek.id)
                                     }
-                                >
-                                    <p className="text-lg text-left uppercase w-96 line-clamp-1">
-                                        {kategori.kuis}
-                                    </p>
-                                </button>
+                                > */}
+                                <p className="text-lg text-left uppercase w-96 line-clamp-1">
+                                    {proyek.nama}
+                                </p>
+                                {/* </button> */}
                             </div>
                             <div className="flex items-center gap-20">
-                                <p className="text-lg py-2 px-4 flex items-center gap-2">
-                                    <svg
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        fill="none"
-                                        viewBox="0 0 24 24"
-                                        strokeWidth="1.5"
-                                        stroke="currentColor"
-                                        className="w-6 h-6"
-                                    >
-                                        <path
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                            d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5"
-                                        />
-                                    </svg>
-                                    {kategori.tenggat}
-                                </p>
-                                <button
+                                <Link
+                                    as="button"
                                     className="py-1 px-3 bg-first text-white rounded-full"
-                                    onClick={() =>
-                                        handleKategoriHasilClick(kategori.id)
-                                    }
                                 >
                                     Lihat Hasil
-                                </button>
+                                </Link>
                                 <Link
                                     method="DELETE"
                                     href={route(
-                                        "kategori-kuis.destroy",
-                                        kategori.id
+                                        "proyek-guru.destroy",
+                                        proyek.id
                                     )}
                                     as="button"
                                     className="flex items-center gap-2"

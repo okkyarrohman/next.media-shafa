@@ -17,7 +17,7 @@ class ProyekGuruController extends Controller
     {
         $proyeks = Proyek::all();
 
-        return Inertia::render('Guru/Proyek', [
+        return Inertia::render('Guru/ProyekGuru', [
             'proyeks' => $proyeks
         ]);
     }
@@ -27,7 +27,7 @@ class ProyekGuruController extends Controller
      */
     public function create()
     {
-        return Inertia::render('Guru/TambahProyek');
+        return Inertia::render('Guru/TambahProyekGuru');
     }
 
     /**
