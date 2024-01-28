@@ -4,15 +4,21 @@ namespace App\Http\Controllers\Guru;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
+use App\Models\Hasil;
 
 class HasilGuruController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of the resource
      */
     public function index()
     {
-        //
+        $hasil = Hasil::with(['soal', 'user'])->get();
+
+        return Inertia::render('Guru/HasilKuisGuru', [
+            'hasils' => $hasil,
+        ]);
     }
 
     /**
@@ -36,7 +42,11 @@ class HasilGuruController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $hasil = Hasil::with('soal')->where('id', $id)->get();
+
+        return Inertia::render('Guru/Kuis/DetailHasilKuis', [
+            'hasils' => $hasil,
+        ]);
     }
 
     /**
@@ -60,6 +70,9 @@ class HasilGuruController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $hasil = Hasil::find($id)->first();
+        $hasil->delete();
+
+        return redirect()->route('hasil-kuis');
     }
 }
