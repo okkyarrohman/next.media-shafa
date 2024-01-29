@@ -27,6 +27,28 @@ export default function ProyekSiswa({ auth }) {
             <Head title="Proyek" />
             <h1 className="font-medium text-4xl text-center mb-24">PROYEK</h1>
             {proyeks.map((proyek, index) => {
+                const filteredProyekResultById = proyek.hasil_proyek.filter(
+                    (hasil) => hasil.user_id == auth.user.id
+                );
+
+                let percentage = 0;
+                if (filteredProyekResultById.length > 0) {
+                    filteredProyekResultById.map((resultItem) => {
+                        const totalAnswers = [
+                            "answer1",
+                            "answer2",
+                            "answer3",
+                            "answer4",
+                        ];
+                        const filledAnswers = totalAnswers.filter(
+                            (answer) => resultItem[answer]
+                        );
+
+                        percentage =
+                            (filledAnswers.length / totalAnswers.length) * 100;
+                    });
+                }
+
                 return (
                     <div
                         key={index}
@@ -43,7 +65,7 @@ export default function ProyekSiswa({ auth }) {
                                     </p>
                                 </Link>
                                 <div className="w-56">
-                                    <ProgressBar persentase={75} />
+                                    <ProgressBar persentase={percentage} />
                                 </div>
                             </div>
                             <div className="ml-auto flex items-center w-36 justify-between">
@@ -63,7 +85,10 @@ export default function ProyekSiswa({ auth }) {
                                     </svg>
                                 </button>
                                 <p className="text-lg py-2 px-4 bg-first rounded-full">
-                                    75/100
+                                    {filteredProyekResultById.length != 0
+                                        ? filteredProyekResultById[0].nilai
+                                        : "0"}
+                                    /100
                                 </p>
                             </div>
                         </div>

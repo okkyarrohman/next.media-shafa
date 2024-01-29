@@ -14,7 +14,7 @@ class HasilGuruController extends Controller
      */
     public function index()
     {
-        $hasil = Hasil::with(['soal', 'user'])->get();
+        $hasil = Hasil::with(['soal', 'user', 'kategori'])->get();
 
         return Inertia::render('Guru/HasilKuisGuru', [
             'hasils' => $hasil,
@@ -42,9 +42,9 @@ class HasilGuruController extends Controller
      */
     public function show(string $id)
     {
-        $hasil = Hasil::with('soal')->where('id', $id)->get();
+        $hasil = Hasil::with(['soal', 'user', 'kategori'])->where('id', $id)->get();
 
-        return Inertia::render('Guru/Kuis/DetailHasilKuis', [
+        return Inertia::render('Guru/DetailHasilKuisGuru', [
             'hasils' => $hasil,
         ]);
     }

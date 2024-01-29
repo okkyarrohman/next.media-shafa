@@ -13,7 +13,6 @@ class Proyek extends Model
 
     protected $fillable = [
         'nama',
-
         'proses1',
         'file1',
         'proses2',

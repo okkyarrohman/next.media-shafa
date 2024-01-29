@@ -17,7 +17,7 @@ class ProyekController extends Controller
      */
     public function index()
     {
-        $proyeks = Proyek::all();
+        $proyeks = Proyek::with('hasilProyek')->get();
 
         return Inertia::render('Siswa/ProyekSiswa', [
             'proyeks' => $proyeks
@@ -79,9 +79,9 @@ class ProyekController extends Controller
      */
     public function show(string $id)
     {
-        $proyeks = Proyek::findOrFail($id)->get();
+        $proyeks = Proyek::with('hasilProyek')->where('id', $id)->get();
 
-        return Inertia::render('View', [
+        return Inertia::render('Siswa/DetailProyekSiswa', [
             'proyeks' => $proyeks
         ]);
     }
@@ -91,9 +91,12 @@ class ProyekController extends Controller
      */
     public function edit(string $id)
     {
+        $proyeks = Proyek::where('id', $id)->get();
+
         $hasilProyeks = HasilProyek::where('proyek_id', $id)->get();
 
-        return Inertia::render('Siswa/EditHasilProyek', [
+        return Inertia::render('Siswa/TahapanProyekSiswa', [
+            'proyeks' => $proyeks,
             'hasilProyeks' => $hasilProyeks
         ]);
     }
@@ -103,7 +106,41 @@ class ProyekController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $proyek = HasilProyek::find($id);
+        $proyek->user_id = $request->user_id;
+        $proyek->proyek_id = $request->proyek_id;
+        $proyek->answer1 = $request->answer1;
+
+        // Request column input type file
+        if ($request->hasFile('answer2')) {
+            $answer2 = $request->file('answer2');
+            $extension = $answer2->getClientOriginalName();
+            $answer2Name = date('YmdHis') . "." . $extension;
+            $answer2->move(storage_path('app/public/HasilProyek/answer2/'), $answer2Name);
+            $proyek->answer2 = $answer2Name;
+        }
+
+        // Request column input type file
+        if ($request->hasFile('answer3')) {
+            $answer3 = $request->file('answer3');
+            $extension = $answer3->getClientOriginalName();
+            $answer3Name = date('YmdHis') . "." . $extension;
+            $answer3->move(storage_path('app/public/HasilProyek/answer3/'), $answer3Name);
+            $proyek->answer3 = $answer3Name;
+        }
+
+        // Request column input type file
+        if ($request->hasFile('answer4')) {
+            $answer4 = $request->file('answer4');
+            $extension = $answer4->getClientOriginalName();
+            $answer4Name = date('YmdHis') . "." . $extension;
+            $answer4->move(storage_path('app/public/HasilProyek/answer4/'), $answer4Name);
+            $proyek->answer4 = $answer4Name;
+        }
+
+        $proyek->save();
+
+        return redirect()->route('proyek.index');
     }
 
     /**
