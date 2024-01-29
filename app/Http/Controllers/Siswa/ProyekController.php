@@ -106,7 +106,41 @@ class ProyekController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $proyek = HasilProyek::find($id);
+        $proyek->user_id = $request->user_id;
+        $proyek->proyek_id = $request->proyek_id;
+        $proyek->answer1 = $request->answer1;
+
+        // Request column input type file
+        if ($request->hasFile('answer2')) {
+            $answer2 = $request->file('answer2');
+            $extension = $answer2->getClientOriginalName();
+            $answer2Name = date('YmdHis') . "." . $extension;
+            $answer2->move(storage_path('app/public/HasilProyek/answer2/'), $answer2Name);
+            $proyek->answer2 = $answer2Name;
+        }
+
+        // Request column input type file
+        if ($request->hasFile('answer3')) {
+            $answer3 = $request->file('answer3');
+            $extension = $answer3->getClientOriginalName();
+            $answer3Name = date('YmdHis') . "." . $extension;
+            $answer3->move(storage_path('app/public/HasilProyek/answer3/'), $answer3Name);
+            $proyek->answer3 = $answer3Name;
+        }
+
+        // Request column input type file
+        if ($request->hasFile('answer4')) {
+            $answer4 = $request->file('answer4');
+            $extension = $answer4->getClientOriginalName();
+            $answer4Name = date('YmdHis') . "." . $extension;
+            $answer4->move(storage_path('app/public/HasilProyek/answer4/'), $answer4Name);
+            $proyek->answer4 = $answer4Name;
+        }
+
+        $proyek->save();
+
+        return redirect()->route('proyek.index');
     }
 
     /**
