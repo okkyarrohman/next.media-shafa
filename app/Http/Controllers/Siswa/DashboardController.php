@@ -23,7 +23,6 @@ class DashboardController extends Controller
     {
         $kuis = Kategori::all()->count();
         $proyeks = Proyek::all()->count();
-        dd($kuis, $proyeks);
 
         return Inertia::render('Siswa/TestSiswa', [
             'kuis' => $kuis,

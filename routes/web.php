@@ -68,6 +68,8 @@ Route::group(['middleware' => 'role:siswa'], function () {
     Route::post('/proyek/edit/answer2', [ProyekController::class, 'updateAnswer2'])->name('proyek.answer2');
     Route::post('/proyek/edit/answer3', [ProyekController::class, 'updateAnswer3'])->name('proyek.answer3');
     Route::post('/proyek/edit/answer4', [ProyekController::class, 'updateAnswer4'])->name('proyek.answer4');
+
+    Route::get('/test-siswa', [DashboardController::class, 'countKuisProyek'])->name('test-siswa');
 });
 
 
@@ -100,14 +102,8 @@ Route::get('/absen-siswa', function () {
     return Inertia::render('Siswa/AbsenSiswa');
 })->name('absen-siswa');
 
-Route::get('/test-siswa', function () {
-    $kuis = Kategori::all()->count();
-    $proyeks = Proyek::all()->count();
-    return Inertia::render('Siswa/TestSiswa', [
-        'kuis' => $kuis,
-        'proyeks' => $proyeks
-    ]);
-})->name('test-siswa');
+
+
 
 Route::get('/kuis-siswa', function () {
     return Inertia::render('Siswa/KuisSiswa');
