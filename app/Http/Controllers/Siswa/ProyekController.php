@@ -104,9 +104,9 @@ class ProyekController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request)
     {
-        $proyek = HasilProyek::find($id);
+        $proyek = HasilProyek::find($request->id);
         $proyek->user_id = $request->user_id;
         $proyek->proyek_id = $request->proyek_id;
         $proyek->answer1 = $request->answer1;
