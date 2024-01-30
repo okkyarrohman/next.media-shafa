@@ -38,7 +38,7 @@ class ProyekController extends Controller
     public function store(Request $request)
     {
         $hasilProyeks = new HasilProyek();
-        $hasilProyeks->user_id = $request->user_id;
+        $hasilProyeks->user_id = auth()->user()->id;
         $hasilProyeks->proyek_id = $request->proyek_id;
         $hasilProyeks->answer1 = $request->answer1;
 
@@ -107,7 +107,7 @@ class ProyekController extends Controller
     public function update(Request $request)
     {
         $proyek = HasilProyek::find($request->id);
-        $proyek->user_id = $request->user_id;
+        $proyek->user_id = auth()->user()->id;
         $proyek->proyek_id = $request->proyek_id;
         $proyek->answer1 = $request->answer1;
 
