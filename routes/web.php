@@ -16,6 +16,8 @@ use App\Http\Controllers\Siswa\ReferensiController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use App\Models\Kategori;
+use App\Models\Proyek;
 
 /*
 |--------------------------------------------------------------------------
@@ -99,7 +101,12 @@ Route::get('/absen-siswa', function () {
 })->name('absen-siswa');
 
 Route::get('/test-siswa', function () {
-    return Inertia::render('Siswa/TestSiswa');
+    $kuis = Kategori::all()->count();
+    $proyeks = Proyek::all()->count();
+    return Inertia::render('Siswa/TestSiswa', [
+        'kuis' => $kuis,
+        'proyeks' => $proyeks
+    ]);
 })->name('test-siswa');
 
 Route::get('/kuis-siswa', function () {
