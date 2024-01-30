@@ -62,6 +62,10 @@ Route::group(['middleware' => 'role:siswa'], function () {
         'proyek' => ProyekController::class,
         'kuis' => KuisController::class,
     ]);
+
+    Route::post('/proyek/edit/answer2', [ProyekController::class, 'updateAnswer2'])->name('proyek.answer2');
+    Route::post('/proyek/edit/answer3', [ProyekController::class, 'updateAnswer3'])->name('proyek.answer3');
+    Route::post('/proyek/edit/answer4', [ProyekController::class, 'updateAnswer4'])->name('proyek.answer4');
 });
 
 
