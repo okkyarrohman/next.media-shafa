@@ -94,10 +94,6 @@ Route::get('/profil', function () {
 //     return Inertia::render('Siswa/DashboardSiswa');
 // })->name('dashboard');
 
-Route::get('/referensi-siswa', function () {
-    return Inertia::render('Siswa/ReferensiSiswa');
-})->name('referensi-siswa');
-
 Route::get('/absen-siswa', function () {
     return Inertia::render('Siswa/AbsenSiswa');
 })->name('absen-siswa');
@@ -114,33 +110,9 @@ Route::get('/soal-kuis-siswa', function () {
     return Inertia::render('Siswa/SoalKuisSiswa');
 })->name('soal-kuis-siswa');
 
-Route::get('/proyek-siswa', function () {
-    return Inertia::render('Siswa/ProyekSiswa');
-})->name('proyek-siswa');
-
 Route::get('/proyek-siswa/detail', function () {
     return Inertia::render('Siswa/DetailProyekSiswa');
 })->name('detail-proyek-siswa');
-
-Route::get('/proyek-siswa/tahap-1', function () {
-    return Inertia::render('Siswa/TahapSatuProyekSiswa');
-})->name('tahap-1-proyek-siswa');
-
-Route::get('/proyek-siswa/tahap-2', function () {
-    return Inertia::render('Siswa/TahapDuaProyekSiswa');
-})->name('tahap-2-proyek-siswa');
-
-Route::get('/proyek-siswa/tahap-3', function () {
-    return Inertia::render('Siswa/TahapTigaProyekSiswa');
-})->name('tahap-3-proyek-siswa');
-
-Route::get('/proyek-siswa/tahap-4', function () {
-    return Inertia::render('Siswa/TahapEmpatProyekSiswa');
-})->name('tahap-4-proyek-siswa');
-
-Route::get('/tugas-siswa', function () {
-    return Inertia::render('Siswa/TugasSiswa');
-})->name('tugas-siswa');
 
 
 

@@ -141,9 +141,9 @@ class ProyekController extends Controller
         return redirect()->route('proyek.index');
     }
 
-    public function updateAnswer2(Request $request, $id)
+    public function updateAnswer2(Request $request)
     {
-        $proyek = HasilProyek::find($id);
+        $proyek = HasilProyek::find($request->id);
         // Request column input type file
         if ($request->hasFile('answer2')) {
             $answer2 = $request->file('answer2');
@@ -156,9 +156,9 @@ class ProyekController extends Controller
         return redirect()->route('proyek.index');
     }
 
-    public function updateAnswer3(Request $request, $id)
+    public function updateAnswer3(Request $request)
     {
-        $proyek = HasilProyek::find($id);
+        $proyek = HasilProyek::find($request->id);
         // Request column input type file
         if ($request->hasFile('answer3')) {
             $answer3 = $request->file('answer3');
@@ -171,9 +171,9 @@ class ProyekController extends Controller
         return redirect()->route('proyek.index');
     }
 
-    public function updateAnswer4(Request $request, $id)
+    public function updateAnswer4(Request $request)
     {
-        $proyek = HasilProyek::find($id);
+        $proyek = HasilProyek::find($request->id);
         // Request column input type file
         if ($request->hasFile('answer4')) {
             $answer4 = $request->file('answer4');

@@ -4,74 +4,93 @@ import { Head, Link, useForm, usePage } from "@inertiajs/react";
 import { useEffect, useState } from "react";
 import { url } from "../../../utility/url";
 import Upload from "@/Components/General/Upload";
+import UploadTes from "@/Components/General/UploadTes";
 
 export default function TahapanProyekSiswa({ auth }) {
     const { proyeks, hasilProyeks } = usePage().props;
     const currentStep = localStorage.getItem("CURRENT_STEP_PROYEK");
 
-    const filteredHasilProyeksById = hasilProyeks.filter(
+    const filteredHasilProyeksById = hasilProyeks.find(
         (hasilProyek) => hasilProyek.user_id == auth.user.id
     );
 
-
-    // ======================================== HANDLE DATA 1
-    // const { data, setData, post, patch } = useForm({
-    //     proyek_id: proyeks[0].id,
-    //     answer1: "",
-    //     answer2: null,
-    //     answer3: null,
-    //     answer4: null,
-    // });
-
-    // ======================================== HANDLE DATA 2
     const { data, setData, post, patch } = useForm({
+        id: filteredHasilProyeksById ? filteredHasilProyeksById.id : "",
+        user_id: filteredHasilProyeksById
+            ? filteredHasilProyeksById.user_id
+            : auth.user.id,
         proyek_id: proyeks[0].id,
-        answer1:
-            filteredHasilProyeksById.length != 0
-                ? filteredHasilProyeksById[0].answer1
-                : "",
-        answer2:
-            filteredHasilProyeksById.length != 0
-                ? filteredHasilProyeksById[0].answer2
-                : null,
+        answer1: filteredHasilProyeksById
+            ? filteredHasilProyeksById.answer1
+            : "",
+        answer2: filteredHasilProyeksById
+            ? filteredHasilProyeksById.answer2
+            : null,
+        answer3: filteredHasilProyeksById
+            ? filteredHasilProyeksById.answer3
+            : null,
+        answer4: filteredHasilProyeksById
+            ? filteredHasilProyeksById.answer4
+            : null,
+    });
+
+    const [uploadedFiles, setUploadedFiles] = useState({
+        answer2: null,
         answer3: null,
         answer4: null,
     });
 
-    const [uploadedFiles, setUploadedFiles] = useState([]);
+    const handleDrop = (id, file) => {
+        setUploadedFiles((prevFiles) => ({
+            ...prevFiles,
+            [id]: file,
+        }));
 
-    // ======================================== HANDLE DROP 1
-    // const handleDrop = (index, files) => {
-    //     const fieldName = `answer${index}`;
-    //     setData(fieldName, files[0]);
-    //     setUploadedFiles((prevFiles) => [...prevFiles, ...files]);
-    // };
-
-    // ======================================== HANDLE DROP 2
-    const handleDrop = (files) => {
-        setUploadedFiles(files);
         setData((prevData) => ({
             ...prevData,
-            answer2: files[0],
+            [id]: file,
         }));
-        console.log(uploadedFiles);
     };
 
     const handleProyekStore = (e) => {
         e.preventDefault();
+        console.log("STORE");
         post(route("proyek.store"));
     };
 
-    const handleProyekUpdate = (e) => {
+    const handleAnswer1Update = (e) => {
         e.preventDefault();
-        patch(route("proyek.update", filteredHasilProyeksById[0].id));
+        console.log("UPDATE ANSWER 1");
+        console.log("Data Yang Tersimpan", data);
+        patch(route("proyek.update", filteredHasilProyeksById.id), data);
+    };
+
+    const handleAnswer2Update = (e) => {
+        e.preventDefault();
+        console.log("UPDATE ANSWER 2");
+        post(route("proyek.answer2", filteredHasilProyeksById.id));
+    };
+
+    const handleAnswer3Update = (e) => {
+        e.preventDefault();
+        console.log("UPDATE ANSWER 3");
+        post(route("proyek.answer3", filteredHasilProyeksById.id));
+    };
+
+    const handleAnswer4Update = (e) => {
+        e.preventDefault();
+        console.log("UPDATE ANSWER 4");
+        post(route("proyek.answer4", filteredHasilProyeksById.id));
     };
 
     useEffect(() => {
         console.log("Proyek", proyeks);
-        console.log("Hasil Proyek", hasilProyeks);
         console.log("Hasil By User", filteredHasilProyeksById);
-    }, [currentStep]);
+    }, []);
+
+    useEffect(() => {
+        console.log("Up File", uploadedFiles);
+    }, [uploadedFiles]);
 
     return (
         <SubLayout auth={auth}>
@@ -91,32 +110,38 @@ export default function TahapanProyekSiswa({ auth }) {
                 type="application/pdf"
             />
             <form className="w-4/5 mx-auto">
-                {/* {currentStep == 1 && ( */}
-                <textarea
-                    className="w-4/5 block mx-auto border border-black rounded-lg"
-                    placeholder="Masukkan Jawaban..."
-                    name="answer1"
-                    id="answer1"
-                    rows="10"
-                    value={data.answer1}
-                    onChange={(e) => setData("answer1", e.target.value)}
-                ></textarea>
-                {/* )} */}
-                {/* {currentStep == 2 && ( */}
-                <Upload onDrop={handleDrop} uploadedFiles={uploadedFiles} />
-                {/* )} */}
-                {/* {currentStep == 3 && ( */}
-                {/* <Upload
-                    onDrop={(files) => handleDrop(3, files)}
-                    uploadedFiles={uploadedFiles}
-                /> */}
-                {/* )} */}
-                {/* {currentStep == 4 && ( */}
-                {/* <Upload
-                    onDrop={(files) => handleDrop(4, files)}
-                    uploadedFiles={uploadedFiles}
-                /> */}
-                {/* )} */}
+                {currentStep == 1 && (
+                    <textarea
+                        className="w-4/5 block mx-auto border border-black rounded-lg"
+                        placeholder="Masukkan Jawaban..."
+                        name="answer1"
+                        id="answer1"
+                        rows="10"
+                        value={data.answer1}
+                        onChange={(e) => setData("answer1", e.target.value)}
+                    ></textarea>
+                )}
+                {currentStep == 2 && (
+                    <UploadTes
+                        onDrop={handleDrop}
+                        uploadedFiles={uploadedFiles.answer2}
+                        idUpload="answer2"
+                    />
+                )}
+                {currentStep == 3 && (
+                    <UploadTes
+                        onDrop={handleDrop}
+                        uploadedFiles={uploadedFiles.answer3}
+                        idUpload="answer3"
+                    />
+                )}
+                {currentStep == 4 && (
+                    <UploadTes
+                        onDrop={handleDrop}
+                        uploadedFiles={uploadedFiles.answer4}
+                        idUpload="answer4"
+                    />
+                )}
                 <div className="flex gap-12 justify-center mt-16">
                     <Link
                         href={route("proyek.index")}
@@ -129,8 +154,16 @@ export default function TahapanProyekSiswa({ auth }) {
                         type="button"
                         className="bg-first font-semibold py-4 px-16 rounded-lg text-white"
                         onClick={
-                            filteredHasilProyeksById.length != 0
-                                ? handleProyekUpdate
+                            filteredHasilProyeksById
+                                ? currentStep == 1
+                                    ? handleAnswer1Update
+                                    : currentStep == 2
+                                    ? handleAnswer2Update
+                                    : currentStep == 3
+                                    ? handleAnswer3Update
+                                    : currentStep == 4
+                                    ? handleAnswer4Update
+                                    : handleProyekStore
                                 : handleProyekStore
                         }
                     >
