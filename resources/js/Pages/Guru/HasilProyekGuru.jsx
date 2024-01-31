@@ -3,28 +3,19 @@ import { Head, Link, usePage } from "@inertiajs/react";
 import { useEffect } from "react";
 import { formatDate } from "../../../utility/formatDate";
 
-export default function HasilKuisGuru({ auth }) {
-    const { kategoris, hasils } = usePage().props;
-    const kategoriId = localStorage.getItem("ID_KATEGORI_KUIS");
-
-    const filteredKategoriById = kategoris.filter(
-        (kategori) => kategori.id == kategoriId
-    );
-
-    const filteredHasilById = hasils.filter(
-        (hasil) => hasil.kategori_id == kategoriId
-    );
+export default function HasilProyekGuru({ auth }) {
+    const { proyeks, hasilProyeks } = usePage().props;
 
     useEffect(() => {
-        console.log(filteredHasilById);
-        console.log("Kategoris", kategoris);
+        console.log(proyeks);
+        console.log("Hasil", hasilProyeks);
     }, []);
 
     return (
         <SubLayoutGuru auth={auth}>
-            <Head title="Kuis" />
+            <Head title="Proyek" />
             <div className="flex items-center mb-24">
-                <Link href={route("kategori-kuis.index")} as="button">
+                <Link href={route("proyek-guru.index")} as="button">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
@@ -41,12 +32,12 @@ export default function HasilKuisGuru({ auth }) {
                     </svg>
                 </Link>
                 <h1 className="font-medium text-4xl text-center w-full uppercase">
-                    HASIL KUIS <br />
-                    {filteredKategoriById[0].kuis}
+                    HASIL PROYEK <br />
+                    {proyeks[0].nama}
                 </h1>
             </div>
-            {filteredHasilById.length > 0 ? (
-                filteredHasilById.map((hasil, index) => {
+            {hasilProyeks.length > 0 ? (
+                hasilProyeks.map((hasilProyek, index) => {
                     return (
                         <div
                             key={index}
@@ -60,11 +51,11 @@ export default function HasilKuisGuru({ auth }) {
                                     <Link
                                         href={route(
                                             "hasil-kuis.show",
-                                            hasil.id
+                                            hasilProyek.id
                                         )}
                                     >
                                         <p className="text-lg uppercase">
-                                            {hasil.user.name}
+                                            {hasilProyek.user.name}
                                         </p>
                                     </Link>
                                 </div>
@@ -84,10 +75,13 @@ export default function HasilKuisGuru({ auth }) {
                                                 d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5"
                                             />
                                         </svg>
-                                        {formatDate(hasil.created_at)}
+                                        {formatDate(hasilProyek.created_at)}
                                     </p>
                                     <p className="text-lg py-2 px-4 bg-first rounded-full">
-                                        {hasil.total_points}/100
+                                        {hasilProyek.nilai != null
+                                            ? hasilProyek.nilai
+                                            : "Belum Dinilai"}
+                                        /100
                                     </p>
                                 </div>
                             </div>
@@ -109,7 +103,7 @@ export default function HasilKuisGuru({ auth }) {
                         />
                     </svg>
                     <h1 className="text-5xl font-semibold text-center">
-                        Belum Ada Yang Mengerjakan Kuis!
+                        Belum Ada Yang Mengerjakan Proyek!
                     </h1>
                 </div>
             )}

@@ -41,6 +41,18 @@ use App\Models\Proyek;
 
 require __DIR__ . '/auth.php';
 
+Route::get('/', function () {
+    return Inertia::render('Landing');
+});
+
+Route::get('/masuk', function () {
+    return Inertia::render('Auth/Masuk');
+});
+
+Route::get('/daftar', function () {
+    return Inertia::render('Auth/Daftar');
+});
+
 Route::group(['middleware' => 'role:guru'], function () {
     Route::resources([
         'dashboard-guru' => DashboardGuruController::class,
@@ -54,6 +66,8 @@ Route::group(['middleware' => 'role:guru'], function () {
         'opsi-kuis' => OpsiGuruController::class,
         'hasil-kuis' => HasilGuruController::class,
     ]);
+
+    Route::get('/test-guru', [DashboardGuruController::class, 'countKuisProyek'])->name('test-guru');
 });
 
 Route::group(['middleware' => 'role:siswa'], function () {
@@ -72,42 +86,15 @@ Route::group(['middleware' => 'role:siswa'], function () {
     Route::get('/test-siswa', [DashboardController::class, 'countKuisProyek'])->name('test-siswa');
 });
 
-Route::get('/', function () {
-    return Inertia::render('Landing');
-});
-
-Route::get('/masuk', function () {
-    return Inertia::render('Auth/Masuk');
-});
-
-Route::get('/daftar', function () {
-    return Inertia::render('Auth/Daftar');
-});
-
 // SISWA
 Route::get('/absen-siswa', function () {
     return Inertia::render('Siswa/AbsenSiswa');
 })->name('absen-siswa');
 
-
-
-
 // GURU
 Route::get('/absen-guru', function () {
     return Inertia::render('Guru/AbsenGuru');
 })->name('absen-guru');
-
-Route::get('/test-guru', function () {
-    return Inertia::render('Guru/TestGuru');
-})->name('test-guru');
-
-Route::get('/tugas-guru', function () {
-    return Inertia::render('Guru/TugasGuru');
-})->name('tugas-guru');
-
-Route::get('/hasil-tugas-guru', function () {
-    return Inertia::render('Guru/HasilTugasSiswaGuru');
-})->name('hasil-tugas');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

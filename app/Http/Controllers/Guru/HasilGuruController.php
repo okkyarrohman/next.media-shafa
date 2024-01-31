@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Models\Hasil;
+use App\Models\Kategori;
 
 class HasilGuruController extends Controller
 {
@@ -14,10 +15,12 @@ class HasilGuruController extends Controller
      */
     public function index()
     {
+        $kategoris = Kategori::all();
         $hasil = Hasil::with(['soal', 'user', 'kategori'])->get();
 
         return Inertia::render('Guru/HasilKuisGuru', [
             'hasils' => $hasil,
+            'kategoris' => $kategoris
         ]);
     }
 

@@ -1,7 +1,9 @@
 import SubLayout from "@/Layouts/SubLayout";
-import { Head, Link } from "@inertiajs/react";
+import { Head, Link, usePage } from "@inertiajs/react";
 
 export default function TestSiswa({ auth }) {
+    const { kuis, proyeks } = usePage().props;
+
     return (
         <SubLayout auth={auth}>
             <Head title="Test" />
@@ -11,7 +13,7 @@ export default function TestSiswa({ auth }) {
                 <div className="w-[30rem]">
                     <div className="flex items-center justify-between h-56 bg-[#A3A3A3] px-8">
                         <div className="text-white flex flex-col justify-center gap-6">
-                            <h1 className="text-5xl">1</h1>
+                            <h1 className="text-5xl">{kuis}</h1>
                             <h1 className="text-5xl">KUIS</h1>
                         </div>
                         <svg
@@ -51,7 +53,7 @@ export default function TestSiswa({ auth }) {
                 <div className="w-[30rem]">
                     <div className="flex items-center justify-between h-56 bg-[#F26969] px-8">
                         <div className="text-white flex flex-col justify-center gap-6">
-                            <h1 className="text-5xl">1</h1>
+                            <h1 className="text-5xl">{proyeks}</h1>
                             <h1 className="text-5xl">PROYEK</h1>
                         </div>
                         <svg
@@ -60,7 +62,7 @@ export default function TestSiswa({ auth }) {
                             viewBox="0 0 24 24"
                             strokeWidth="1.5"
                             stroke="currentColor"
-                            class="w-24 h-24 text-white"
+                            className="w-24 h-24 text-white"
                         >
                             <path
                                 strokeLinecap="round"
