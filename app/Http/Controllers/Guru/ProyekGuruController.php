@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Guru;
 
 use App\Http\Controllers\Controller;
+use App\Models\HasilProyek;
 use Illuminate\Http\Request;
 use App\Models\Proyek;
 use Inertia\Inertia;
@@ -86,10 +87,12 @@ class ProyekGuruController extends Controller
      */
     public function show(string $id)
     {
-        $proyeks = Proyek::findOrFail($id)->get();
+        $proyeks = Proyek::where('id', $id)->get();
+        $hasilProyeks = HasilProyek::where('proyek_id', $id)->with(['user', 'proyek'])->get();
 
-        return Inertia::render('View', [
-            'proyeks' => $proyeks
+        return Inertia::render('Guru/HasilProyekGuru', [
+            'proyeks' => $proyeks,
+            'hasilProyeks' => $hasilProyeks
         ]);
     }
 

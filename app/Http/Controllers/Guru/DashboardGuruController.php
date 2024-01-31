@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Guru;
 
 use App\Http\Controllers\Controller;
+use App\Models\Kategori;
+use App\Models\Proyek;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Auth;
@@ -17,6 +19,17 @@ class DashboardGuruController extends Controller
     {
 
         return Inertia::render('Guru/DashboardGuru');
+    }
+
+    public function countKuisProyek()
+    {
+        $kuis = Kategori::all()->count();
+        $proyeks = Proyek::all()->count();
+
+        return Inertia::render('Guru/TestGuru', [
+            'kuis' => $kuis,
+            'proyeks' => $proyeks
+        ]);
     }
 
     /**
