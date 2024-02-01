@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Guru\DashboardGuruController;
+use App\Http\Controllers\Guru\DataSiswaGuruController;
 use App\Http\Controllers\Guru\KategoriGuruController;
 use App\Http\Controllers\Guru\MateriGuruController;
 use App\Http\Controllers\Guru\ProyekGuruController;
@@ -16,8 +17,6 @@ use App\Http\Controllers\Siswa\ReferensiController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
-use App\Models\Kategori;
-use App\Models\Proyek;
 
 /*
 |--------------------------------------------------------------------------
@@ -59,6 +58,7 @@ Route::group(['middleware' => 'role:guru'], function () {
         'materi-guru' => MateriGuruController::class,
         'referensi-guru' => ReferensiGuruController::class,
         'proyek-guru' => ProyekGuruController::class,
+        'data-siswa' => DataSiswaGuruController::class,
 
         // Make Kuis Start Here
         'kategori-kuis' => KategoriGuruController::class,
