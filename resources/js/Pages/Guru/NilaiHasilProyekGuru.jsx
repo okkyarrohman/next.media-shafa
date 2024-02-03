@@ -4,24 +4,29 @@ import SubLayoutGuru from "@/Layouts/SubLayoutGuru";
 import { Head, Link, useForm, usePage } from "@inertiajs/react";
 import { useEffect } from "react";
 import { url } from "../../../utility/url";
+import OptionKonfirmasiProyek from "@/Components/General/OptionKonfirmasiProyek";
 
 export default function NilaiHasilProyek({ auth }) {
     const { hasilProyeks } = usePage().props;
     const currentStep = localStorage.getItem("CURRENT_STEP_PROYEK");
 
     const { data, setData, patch } = useForm({
-        nilai: "",
-        catatan: "",
+        konfirmasi1: hasilProyeks[0].konfirmasi1,
+        konfirmasi2: hasilProyeks[0].konfirmasi2,
+        konfirmasi3: hasilProyeks[0].konfirmasi3,
+        konfirmasi4: hasilProyeks[0].konfirmasi4,
+        nilai: hasilProyeks[0].nilai,
+        catatan: hasilProyeks[0].catatan,
     });
 
     const handleNilaiUpdate = (e) => {
         e.preventDefault();
-        patch(route("hasil-proyek.update", hasilProyeks[0].id), data);
+        patch(route("hasil-proyek.update", hasilProyeks[0].id));
     };
 
     useEffect(() => {
-        console.log(hasilProyeks);
-    }, []);
+        console.log(data);
+    });
 
     return (
         <SubLayoutGuru auth={auth}>
@@ -36,6 +41,17 @@ export default function NilaiHasilProyek({ auth }) {
                     </span>
                 </h1>
             </div>
+            {currentStep == 1 && (
+                <textarea
+                    className="w-4/5 mb-24 block mx-auto border border-black bg-transparent rounded-lg"
+                    placeholder="Masukkan Catatan..."
+                    name="answer1"
+                    id="answer1"
+                    rows="10"
+                    value={hasilProyeks[0].answer1}
+                    disabled
+                ></textarea>
+            )}
             {currentStep != 1 && (
                 <embed
                     className="rounded-xl w-4/5 h-[60rem] mx-auto mb-24"
@@ -46,10 +62,34 @@ export default function NilaiHasilProyek({ auth }) {
                 />
             )}
             <form className="w-4/5 mx-auto">
-                {currentStep == 1 && 1}
-                {currentStep == 2 && 2}
-                {currentStep == 3 && 3}
-                {currentStep == 4 && 4}
+                {currentStep == 1 && (
+                    <OptionKonfirmasiProyek
+                        id="konfirmasi1"
+                        selectedValue={data.konfirmasi1}
+                        onChange={(e) => setData("konfirmasi1", e.target.value)}
+                    />
+                )}
+                {currentStep == 2 && (
+                    <OptionKonfirmasiProyek
+                        id="konfirmasi2"
+                        selectedValue={data.konfirmasi2}
+                        onChange={(e) => setData("konfirmasi2", e.target.value)}
+                    />
+                )}
+                {currentStep == 3 && (
+                    <OptionKonfirmasiProyek
+                        id="konfirmasi3"
+                        selectedValue={data.konfirmasi3}
+                        onChange={(e) => setData("konfirmasi3", e.target.value)}
+                    />
+                )}
+                {currentStep == 4 && (
+                    <OptionKonfirmasiProyek
+                        id="konfirmasi4"
+                        selectedValue={data.konfirmasi4}
+                        onChange={(e) => setData("konfirmasi4", e.target.value)}
+                    />
+                )}
                 {currentStep == "nilai" && (
                     <div className="bg-white rounded-xl p-8">
                         <div className="mb-4">

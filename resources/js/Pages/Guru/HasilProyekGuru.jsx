@@ -11,8 +11,8 @@ export default function HasilProyekGuru({ auth }) {
         console.log("Hasil", hasilProyeks);
     }, []);
 
-    const handleHasilOnClick = (userId) => {
-        localStorage.setItem("ID_USER_PROYEK", userId);
+    const handleHasilOnClick = (id) => {
+        localStorage.setItem("ID_HASIL_PROYEK", id);
         router.visit("/hasil-proyek");
     };
 
@@ -62,9 +62,7 @@ export default function HasilProyekGuru({ auth }) {
                                     <button
                                         type="button"
                                         onClick={() =>
-                                            handleHasilOnClick(
-                                                hasilProyek.user.id
-                                            )
+                                            handleHasilOnClick(hasilProyek.id)
                                         }
                                     >
                                         <p className="text-lg uppercase">

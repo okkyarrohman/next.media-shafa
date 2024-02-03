@@ -62,15 +62,22 @@ export default function DetailProyekSiswa({ auth }) {
                         <td>
                             <div className="w-fit mx-auto">
                                 <StatusIcon
-                                    accept="Diterima"
-                                    decline="Ditolak"
+                                    accept="Terima"
+                                    decline="Tolak"
+                                    submit="Terkirim"
                                     process="Diproses"
                                     status={
                                         filteredProyekResultById.length != 0
                                             ? filteredProyekResultById[0]
-                                                  .answer1 != null
-                                                ? "Diterima"
-                                                : "Ditolak"
+                                                  .answer1 != null &&
+                                              filteredProyekResultById[0]
+                                                  .konfirmasi1 == null
+                                                ? "Terkirim"
+                                                : filteredProyekResultById[0]
+                                                      .konfirmasi1 == null
+                                                ? "Diproses"
+                                                : filteredProyekResultById[0]
+                                                      .konfirmasi1
                                             : "Diproses"
                                     }
                                 />
@@ -105,15 +112,22 @@ export default function DetailProyekSiswa({ auth }) {
                         <td>
                             <div className="w-fit mx-auto">
                                 <StatusIcon
-                                    accept="Diterima"
-                                    decline="Ditolak"
+                                    accept="Terima"
+                                    decline="Tolak"
+                                    submit="Terkirim"
                                     process="Diproses"
                                     status={
                                         filteredProyekResultById.length != 0
                                             ? filteredProyekResultById[0]
-                                                  .answer2 != null
-                                                ? "Diterima"
-                                                : "Ditolak"
+                                                  .answer2 != null &&
+                                              filteredProyekResultById[0]
+                                                  .konfirmasi2 == null
+                                                ? "Terkirim"
+                                                : filteredProyekResultById[0]
+                                                      .konfirmasi2 == null
+                                                ? "Diproses"
+                                                : filteredProyekResultById[0]
+                                                      .konfirmasi2
                                             : "Diproses"
                                     }
                                 />
@@ -146,15 +160,22 @@ export default function DetailProyekSiswa({ auth }) {
                         <td>
                             <div className="w-fit mx-auto">
                                 <StatusIcon
-                                    accept="Diterima"
-                                    decline="Ditolak"
+                                    accept="Terima"
+                                    decline="Tolak"
+                                    submit="Terkirim"
                                     process="Diproses"
                                     status={
                                         filteredProyekResultById.length != 0
                                             ? filteredProyekResultById[0]
-                                                  .answer3 != null
-                                                ? "Diterima"
-                                                : "Ditolak"
+                                                  .answer3 != null &&
+                                              filteredProyekResultById[0]
+                                                  .konfirmasi3 == null
+                                                ? "Terkirim"
+                                                : filteredProyekResultById[0]
+                                                      .konfirmasi3 == null
+                                                ? "Diproses"
+                                                : filteredProyekResultById[0]
+                                                      .konfirmasi3
                                             : "Diproses"
                                     }
                                 />
@@ -187,15 +208,22 @@ export default function DetailProyekSiswa({ auth }) {
                         <td>
                             <div className="w-fit mx-auto">
                                 <StatusIcon
-                                    accept="Diterima"
-                                    decline="Ditolak"
+                                    accept="Terima"
+                                    decline="Tolak"
+                                    submit="Terkirim"
                                     process="Diproses"
                                     status={
                                         filteredProyekResultById.length != 0
                                             ? filteredProyekResultById[0]
-                                                  .answer4 != null
-                                                ? "Diterima"
-                                                : "Ditolak"
+                                                  .answer4 != null &&
+                                              filteredProyekResultById[0]
+                                                  .konfirmasi4 == null
+                                                ? "Terkirim"
+                                                : filteredProyekResultById[0]
+                                                      .konfirmasi4 == null
+                                                ? "Diproses"
+                                                : filteredProyekResultById[0]
+                                                      .konfirmasi4
                                             : "Diproses"
                                     }
                                 />

@@ -29,6 +29,10 @@ class HasilProyekFactory extends Factory
             'answer2' => $this->faker->imageUrl(),
             'answer3' => $this->faker->imageUrl(),
             'answer4' => $this->faker->imageUrl(),
+            'konfirmasi1' => $this->faker->randomElement(['Tolak', 'Terima']),
+            'konfirmasi2' => $this->faker->randomElement(['Tolak', 'Terima']),
+            'konfirmasi3' => $this->faker->randomElement(['Tolak', 'Terima']),
+            'konfirmasi4' => $this->faker->randomElement(['Tolak', 'Terima']),
             'nilai' => $this->faker->numberBetween(10, 100),
             'catatan' => $this->faker->sentence(),
         ];

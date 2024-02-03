@@ -63,6 +63,10 @@ class HasilProyekGuruController extends Controller
     public function update(Request $request, string $id)
     {
         $proyeks = HasilProyek::find($id);
+        $proyeks->konfirmasi1 = $request->konfirmasi1;
+        $proyeks->konfirmasi2 = $request->konfirmasi2;
+        $proyeks->konfirmasi3 = $request->konfirmasi3;
+        $proyeks->konfirmasi4 = $request->konfirmasi4;
         $proyeks->nilai = $request->nilai;
         $proyeks->catatan = $request->catatan;
 

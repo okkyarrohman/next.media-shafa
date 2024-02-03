@@ -1,16 +1,17 @@
 import BackButton from "@/Components/General/BackButton";
 import ProgressBar from "@/Components/General/ProgressBar";
 import StatusIcon from "@/Components/General/StatusIcon";
+import TextInput from "@/Components/TextInput";
 import SubLayout from "@/Layouts/SubLayout";
-import { Head, Link, router, usePage } from "@inertiajs/react";
+import { Head, router, usePage } from "@inertiajs/react";
 import { useEffect } from "react";
 
 export default function DetailHasilProyekGuru({ auth }) {
     const { hasilProyeks } = usePage().props;
-    const userId = localStorage.getItem("ID_USER_PROYEK");
+    const hasilProyekId = localStorage.getItem("ID_HASIL_PROYEK");
 
     const filteredHasilProyeksById = hasilProyeks.filter(
-        (hasil) => hasil.user_id == userId
+        (hasil) => hasil.id == hasilProyekId
     );
 
     let percentage = 0;
@@ -65,17 +66,20 @@ export default function DetailHasilProyekGuru({ auth }) {
                         <td>
                             <div className="w-fit mx-auto">
                                 <StatusIcon
-                                    accept="Diterima"
-                                    decline="Ditolak"
-                                    process="Diproses"
-                                    // status={
-                                    //     filteredProyekResultById.length != 0
-                                    //         ? filteredProyekResultById[0]
-                                    //               .answer1 != null
-                                    //             ? "Diterima"
-                                    //             : "Ditolak"
-                                    //         : "Diproses"
-                                    // }
+                                    accept="Terima"
+                                    decline="Tolak"
+                                    submit="Terkirim"
+                                    process="Proses"
+                                    status={
+                                        filteredHasilProyeksById[0].answer1 ==
+                                        null
+                                            ? "Proses"
+                                            : filteredHasilProyeksById[0]
+                                                  .konfirmasi1 == null
+                                            ? "Terkirim"
+                                            : filteredHasilProyeksById[0]
+                                                  .konfirmasi1
+                                    }
                                 />
                             </div>
                         </td>
@@ -112,17 +116,20 @@ export default function DetailHasilProyekGuru({ auth }) {
                         <td>
                             <div className="w-fit mx-auto">
                                 <StatusIcon
-                                    accept="Diterima"
-                                    decline="Ditolak"
-                                    process="Diproses"
-                                    // status={
-                                    //     filteredProyekResultById.length != 0
-                                    //         ? filteredProyekResultById[0]
-                                    //               .answer2 != null
-                                    //             ? "Diterima"
-                                    //             : "Ditolak"
-                                    //         : "Diproses"
-                                    // }
+                                    accept="Terima"
+                                    decline="Tolak"
+                                    submit="Terkirim"
+                                    process="Proses"
+                                    status={
+                                        filteredHasilProyeksById[0].answer2 ==
+                                        null
+                                            ? "Proses"
+                                            : filteredHasilProyeksById[0]
+                                                  .konfirmasi2 == null
+                                            ? "Terkirim"
+                                            : filteredHasilProyeksById[0]
+                                                  .konfirmasi2
+                                    }
                                 />
                             </div>
                         </td>
@@ -158,17 +165,20 @@ export default function DetailHasilProyekGuru({ auth }) {
                         <td>
                             <div className="w-fit mx-auto">
                                 <StatusIcon
-                                    accept="Diterima"
-                                    decline="Ditolak"
-                                    process="Diproses"
-                                    // status={
-                                    //     filteredProyekResultById.length != 0
-                                    //         ? filteredProyekResultById[0]
-                                    //               .answer3 != null
-                                    //             ? "Diterima"
-                                    //             : "Ditolak"
-                                    //         : "Diproses"
-                                    // }
+                                    accept="Terima"
+                                    decline="Tolak"
+                                    submit="Terkirim"
+                                    process="Proses"
+                                    status={
+                                        filteredHasilProyeksById[0].answer3 ==
+                                        null
+                                            ? "Proses"
+                                            : filteredHasilProyeksById[0]
+                                                  .konfirmasi3 == null
+                                            ? "Terkirim"
+                                            : filteredHasilProyeksById[0]
+                                                  .konfirmasi3
+                                    }
                                 />
                             </div>
                         </td>
@@ -204,17 +214,20 @@ export default function DetailHasilProyekGuru({ auth }) {
                         <td>
                             <div className="w-fit mx-auto">
                                 <StatusIcon
-                                    accept="Diterima"
-                                    decline="Ditolak"
-                                    process="Diproses"
-                                    // status={
-                                    //     filteredProyekResultById.length != 0
-                                    //         ? filteredProyekResultById[0]
-                                    //               .answer4 != null
-                                    //             ? "Diterima"
-                                    //             : "Ditolak"
-                                    //         : "Diproses"
-                                    // }
+                                    accept="Terima"
+                                    decline="Tolak"
+                                    submit="Terkirim"
+                                    process="Proses"
+                                    status={
+                                        filteredHasilProyeksById[0].answer4 ==
+                                        null
+                                            ? "Proses"
+                                            : filteredHasilProyeksById[0]
+                                                  .konfirmasi4 == null
+                                            ? "Terkirim"
+                                            : filteredHasilProyeksById[0]
+                                                  .konfirmasi4
+                                    }
                                 />
                             </div>
                         </td>
@@ -255,6 +268,50 @@ export default function DetailHasilProyekGuru({ auth }) {
             >
                 Upload Nilai
             </button>
+            <div className="bg-white rounded-xl p-8 w-3/5 mx-auto mt-16">
+                <div className="mb-4">
+                    <label
+                        className="block text-3xl font-semibold mb-2"
+                        htmlFor="nilai"
+                    >
+                        Nilai
+                    </label>
+                    <TextInput
+                        id="nilai"
+                        type="text"
+                        name="nilai"
+                        placeholder="Masukkan Nilai..."
+                        className="w-4/5 block mx-auto border border-black bg-transparent rounded-lg"
+                        value={
+                            filteredHasilProyeksById[0].nilai != null
+                                ? filteredHasilProyeksById[0].nilai
+                                : "Belum Dinilai"
+                        }
+                        disabled
+                    />
+                </div>
+                <div className="mb-4">
+                    <label
+                        className="block text-3xl font-semibold mb-2"
+                        htmlFor="catatan"
+                    >
+                        Catatan
+                    </label>
+                    <textarea
+                        className="w-4/5 block mx-auto border border-black bg-transparent rounded-lg"
+                        placeholder="Masukkan Catatan..."
+                        name="catatan"
+                        id="catatan"
+                        rows="10"
+                        value={
+                            filteredHasilProyeksById[0].catatan != null
+                                ? filteredHasilProyeksById[0].catatan
+                                : "Belum Ada Catatan"
+                        }
+                        disabled
+                    ></textarea>
+                </div>
+            </div>
         </SubLayout>
     );
 }

@@ -18,9 +18,13 @@ return new class extends Migration
             $table->unsignedBigInteger('proyek_id')->nullable();
             $table->foreign('proyek_id')->references('id')->on('proyeks')->onDelete('cascade');
             $table->string('answer1')->nullable();
+            $table->string('konfirmasi1')->nullable();
             $table->string('answer2')->nullable();
+            $table->string('konfirmasi2')->nullable();
             $table->string('answer3')->nullable();
+            $table->string('konfirmasi3')->nullable();
             $table->string('answer4')->nullable();
+            $table->string('konfirmasi4')->nullable();
             $table->integer('nilai')->nullable();
             $table->string('catatan')->nullable();
             $table->timestamps();
