@@ -1,22 +1,18 @@
 import SubLayout from "@/Layouts/SubLayout";
 import { Head, useForm, usePage } from "@inertiajs/react";
-import { useEffect, useState } from "react";
-import { imageSoal1 } from "../../../assets";
+import { useState } from "react";
 import BackButton from "@/Components/General/BackButton";
+import { url } from "../../../utility/url";
 
 export default function SoalKuisSiswa({ auth }) {
     const { kategoris } = usePage().props;
 
-    const { data, setData, post, processing, errors } = useForm({
+    const { data, setData, post } = useForm({
         kategori_id: kategoris[0].id,
     });
 
     const [currentSoal, setCurrentSoal] = useState(0);
     const [jawaban, setJawaban] = useState([]);
-
-    useEffect(() => {
-        console.log(jawaban);
-    }, [jawaban]);
 
     const handleJawabanChange = (event) => {
         const { name, value } = event.target;
@@ -58,7 +54,7 @@ export default function SoalKuisSiswa({ auth }) {
                             {kategori.soal[currentSoal].gambar !== null && (
                                 <img
                                     className="w-2/5 mx-auto mb-8"
-                                    src={kategori.soal[currentSoal].gambar}
+                                    src={`${url}/Soal/gambar/${kategori.soal[currentSoal].gambar}`}
                                     alt="gambar soal"
                                 />
                             )}

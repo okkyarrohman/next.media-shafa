@@ -86,7 +86,7 @@ class MateriGuruController extends Controller
      */
     public function destroy(string $id)
     {
-        $materis = Materi::find($id)->first();
+        $materis = Materi::find($id);
 
         if (Storage::exists('public/Materi/file/' . $materis->file)) {
             Storage::delete('public/Materi/file/' . $materis->file);

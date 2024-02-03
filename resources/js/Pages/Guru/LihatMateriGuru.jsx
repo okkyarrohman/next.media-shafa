@@ -1,16 +1,10 @@
 import { Head, usePage } from "@inertiajs/react";
-import { placeholderPDF } from "../../../assets";
 import BackButton from "@/Components/General/BackButton";
-import { useEffect } from "react";
 import SubLayoutGuru from "@/Layouts/SubLayoutGuru";
 import { url } from "../../../utility/url";
 
 export default function LihatMateriSiswa({ auth }) {
     const { materis: materi } = usePage().props;
-
-    useEffect(() => {
-        console.log(materi);
-    }, []);
 
     return (
         <SubLayoutGuru auth={auth}>
