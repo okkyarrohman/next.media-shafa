@@ -23,7 +23,7 @@ export default function HasilKuisGuru({ auth }) {
     return (
         <SubLayoutGuru auth={auth}>
             <Head title="Kuis" />
-            <div className="flex items-center mb-24">
+            <div className="flex items-start mb-24">
                 <Link href={route("kategori-kuis.index")} as="button">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"

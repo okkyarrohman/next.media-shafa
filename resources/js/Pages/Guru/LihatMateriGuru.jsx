@@ -15,7 +15,7 @@ export default function LihatMateriSiswa({ auth }) {
     return (
         <SubLayoutGuru auth={auth}>
             <Head title="Materi" />
-            <div className="flex items-center mb-24">
+            <div className="flex items-start mb-24">
                 <BackButton />
                 <h1 className="font-medium text-4xl text-center w-full">
                     {materi[0].nama}

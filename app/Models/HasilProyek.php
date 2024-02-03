@@ -18,7 +18,6 @@ class HasilProyek extends Model
         'answer2',
         'answer3',
         'answer4',
-
         'nilai',
         'catatan',
     ];
