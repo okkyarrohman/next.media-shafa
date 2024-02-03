@@ -69,6 +69,11 @@ class ProyekController extends Controller
             $hasilProyeks->answer4 = $answer4Name;
         }
 
+        // $hasilProyeks->konfirmasi1 = "Proses";
+        // $hasilProyeks->konfirmasi2 = "Proses";
+        // $hasilProyeks->konfirmasi3 = "Proses";
+        // $hasilProyeks->konfirmasi4 = "Proses";
+
         $hasilProyeks->save();
 
         return redirect()->route('proyek.index');

@@ -9,6 +9,7 @@ use App\Http\Controllers\Guru\ReferensiGuruController;
 use App\Http\Controllers\Guru\SoalGuruController;
 use App\Http\Controllers\Guru\OpsiGuruController;
 use App\Http\Controllers\Guru\HasilGuruController;
+use App\Http\Controllers\Guru\HasilProyekGuruController;
 use App\Http\Controllers\Siswa\DashboardController;
 use App\Http\Controllers\Siswa\KuisController;
 use App\Http\Controllers\Siswa\MateriController;
@@ -58,6 +59,7 @@ Route::group(['middleware' => 'role:guru'], function () {
         'materi-guru' => MateriGuruController::class,
         'referensi-guru' => ReferensiGuruController::class,
         'proyek-guru' => ProyekGuruController::class,
+        'hasil-proyek' => HasilProyekGuruController::class,
         'data-siswa' => DataSiswaGuruController::class,
 
         // Make Kuis Start Here

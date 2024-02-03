@@ -1,5 +1,5 @@
 import SubLayoutGuru from "@/Layouts/SubLayoutGuru";
-import { Head, Link, usePage } from "@inertiajs/react";
+import { Head, Link, router, usePage } from "@inertiajs/react";
 import { useEffect } from "react";
 import { formatDate } from "../../../utility/formatDate";
 
@@ -11,10 +11,15 @@ export default function HasilProyekGuru({ auth }) {
         console.log("Hasil", hasilProyeks);
     }, []);
 
+    const handleHasilOnClick = (id) => {
+        localStorage.setItem("ID_HASIL_PROYEK", id);
+        router.visit("/hasil-proyek");
+    };
+
     return (
         <SubLayoutGuru auth={auth}>
             <Head title="Proyek" />
-            <div className="flex items-center mb-24">
+            <div className="flex items-start mb-24">
                 <Link href={route("proyek-guru.index")} as="button">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -48,16 +53,23 @@ export default function HasilProyekGuru({ auth }) {
                                     <div className="size-14 rounded-full bg-yellow-500 flex justify-center items-center font-semibold text-lg">
                                         {index + 1}
                                     </div>
-                                    <Link
+                                    {/* <Link
                                         href={route(
                                             "hasil-kuis.show",
                                             hasilProyek.id
                                         )}
+                                    > */}
+                                    <button
+                                        type="button"
+                                        onClick={() =>
+                                            handleHasilOnClick(hasilProyek.id)
+                                        }
                                     >
                                         <p className="text-lg uppercase">
                                             {hasilProyek.user.name}
                                         </p>
-                                    </Link>
+                                    </button>
+                                    {/* </Link> */}
                                 </div>
                                 <div className="flex gap-20">
                                     <p className="text-lg py-2 px-4 flex items-center gap-2">

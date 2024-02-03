@@ -15,10 +15,13 @@ class HasilProyek extends Model
         'user_id',
         'proyek_id',
         'answer1',
+        'konfirmasi1',
         'answer2',
+        'konfirmasi2',
         'answer3',
+        'konfirmasi3',
         'answer4',
-
+        'konfirmasi4',
         'nilai',
         'catatan',
     ];

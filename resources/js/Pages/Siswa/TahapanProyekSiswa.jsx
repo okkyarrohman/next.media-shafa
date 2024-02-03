@@ -95,7 +95,7 @@ export default function TahapanProyekSiswa({ auth }) {
     return (
         <SubLayout auth={auth}>
             <Head title="Proyek" />
-            <div className="flex items-center mb-24">
+            <div className="flex items-start mb-24">
                 <BackButton />
                 <h1 className="font-medium text-4xl text-center w-full">
                     TAHAP {currentStep} <br />
