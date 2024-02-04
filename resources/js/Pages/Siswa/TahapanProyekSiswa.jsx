@@ -1,9 +1,8 @@
 import BackButton from "@/Components/General/BackButton";
 import SubLayout from "@/Layouts/SubLayout";
 import { Head, Link, useForm, usePage } from "@inertiajs/react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { url } from "../../../utility/url";
-import Upload from "@/Components/General/Upload";
 import UploadTes from "@/Components/General/UploadTes";
 
 export default function TahapanProyekSiswa({ auth }) {
@@ -82,15 +81,6 @@ export default function TahapanProyekSiswa({ auth }) {
         console.log("UPDATE ANSWER 4");
         post(route("proyek.answer4", filteredHasilProyeksById.id));
     };
-
-    useEffect(() => {
-        console.log("Proyek", proyeks);
-        console.log("Hasil By User", filteredHasilProyeksById);
-    }, []);
-
-    useEffect(() => {
-        console.log("Up File", uploadedFiles);
-    }, [uploadedFiles]);
 
     return (
         <SubLayout auth={auth}>

@@ -1,15 +1,10 @@
 import ProgressBar from "@/Components/General/ProgressBar";
 import SubLayout from "@/Layouts/SubLayout";
 import { Head, Link, usePage } from "@inertiajs/react";
-import { useEffect } from "react";
 import Swal from "sweetalert2";
 
 export default function ProyekSiswa({ auth }) {
     const { proyeks } = usePage().props;
-
-    useEffect(() => {
-        console.log(proyeks);
-    }, []);
 
     const popupFeedback = (catatan) => {
         Swal.fire({

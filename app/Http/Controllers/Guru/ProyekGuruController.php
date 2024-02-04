@@ -117,7 +117,7 @@ class ProyekGuruController extends Controller
      */
     public function destroy(string $id)
     {
-        $proyeks = Proyek::find($id)->first();
+        $proyeks = Proyek::find($id);
 
         if (Storage::exists('/public/Proyek/file/' . $proyeks->file)) {
             Storage::delete('/public/Proyek/file/' . $proyeks->file);

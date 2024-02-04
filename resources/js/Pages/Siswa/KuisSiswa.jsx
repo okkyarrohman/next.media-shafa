@@ -1,14 +1,8 @@
 import SubLayout from "@/Layouts/SubLayout";
 import { Head, Link, usePage } from "@inertiajs/react";
-import { useEffect } from "react";
 
 export default function KuisSiswa({ auth }) {
     const { kategoris, hasils } = usePage().props;
-
-    useEffect(() => {
-        console.log(kategoris);
-        console.log("Hasil", hasils);
-    }, []);
 
     return (
         <SubLayout auth={auth}>

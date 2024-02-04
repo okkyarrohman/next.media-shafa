@@ -1,14 +1,9 @@
 import SubLayout from "@/Layouts/SubLayout";
 import { Head, Link, usePage } from "@inertiajs/react";
 import { bgSekolah } from "../../../assets";
-import { useEffect } from "react";
 
 export default function MateriSiswa({ auth }) {
     const { materis } = usePage().props;
-
-    useEffect(() => {
-        console.log(materis);
-    }, []);
 
     return (
         <SubLayout auth={auth}>

@@ -87,7 +87,7 @@ class SoalGuruController extends Controller
      */
     public function destroy(string $id)
     {
-        $soals = Soal::find($id)->get();
+        $soals = Soal::find($id);
 
         if (Storage::exists('public/Soal/gambar/' . $soals->gambar)) {
             Storage::delete('public/Soal/gambar/' . $soals->gambar);

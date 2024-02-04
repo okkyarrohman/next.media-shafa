@@ -1,6 +1,5 @@
 import SubLayoutGuru from "@/Layouts/SubLayoutGuru";
-import { Head, Link, router, usePage } from "@inertiajs/react";
-import { useEffect } from "react";
+import { Head, Link, usePage } from "@inertiajs/react";
 
 export default function OpsiKuisGuru({ auth }) {
     const { opsis } = usePage().props;

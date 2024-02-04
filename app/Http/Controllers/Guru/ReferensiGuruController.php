@@ -80,7 +80,7 @@ class ReferensiGuruController extends Controller
      */
     public function destroy(string $id)
     {
-        $referensis = Referensi::find($id)->get();
+        $referensis = Referensi::find($id);
 
         if (Storage::exists('public/Referensi/gambar/' . $referensis->gambar)) {
             Storage::delete('public/Referensi/gambar/' . $referensis->gambar);

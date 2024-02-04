@@ -9,7 +9,7 @@ export default function SubLayout({ children, auth }) {
     };
 
     return (
-        <main className="min-h-screen bg-background">
+        <main>
             <section>
                 <aside>
                     {viewSidebar ? (
@@ -60,7 +60,11 @@ export default function SubLayout({ children, auth }) {
                 <section
                     className={`${viewSidebar ? "bg-black bg-opacity-50" : ""}`}
                 >
-                    <article className="px-[6.25rem] py-[6.75rem]">
+                    <article
+                        className={`px-[6.25rem] py-[6.75rem] min-h-screen bg-background ${
+                            viewSidebar ? "relative -z-[2]" : ""
+                        }`}
+                    >
                         {children}
                     </article>
                 </section>
