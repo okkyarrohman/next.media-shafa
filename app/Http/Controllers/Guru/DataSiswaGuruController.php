@@ -3,32 +3,22 @@
 namespace App\Http\Controllers\Guru;
 
 use App\Http\Controllers\Controller;
-use App\Models\Kategori;
-use App\Models\Proyek;
 use Illuminate\Http\Request;
-use Inertia\Inertia;
 use Illuminate\Support\Facades\Auth;
-use Spatie\Permission\Models\Role;
+use App\Models\User;
+use Inertia\Inertia;
 
-class DashboardGuruController extends Controller
+class DataSiswaGuruController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
+        $user = User::where('total_login')->get();
 
-        return Inertia::render('Guru/DashboardGuru');
-    }
-
-    public function countKuisProyek()
-    {
-        $kuis = Kategori::all()->count();
-        $proyeks = Proyek::all()->count();
-
-        return Inertia::render('Guru/TestGuru', [
-            'kuis' => $kuis,
-            'proyeks' => $proyeks
+        return Inertia::render('Guru/DataMasterGuru', [
+            'total_login' => $user,
         ]);
     }
 

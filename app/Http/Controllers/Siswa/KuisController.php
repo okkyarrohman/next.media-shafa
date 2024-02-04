@@ -28,8 +28,11 @@ class KuisController extends Controller
             ->whereHas('soal')
             ->get();
 
+        $hasils = Hasil::with(['soal', 'user', 'kategori'])->get();
+        
         return Inertia::render('Siswa/KuisSiswa', [
-            'kategoris' => $kategoris
+            'kategoris' => $kategoris,
+            'hasils' => $hasils
         ]);
     }
 

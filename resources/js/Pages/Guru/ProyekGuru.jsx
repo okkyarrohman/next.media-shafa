@@ -63,6 +63,7 @@ export default function ProyekGuru({ auth }) {
                             </div>
                             <div className="flex items-center gap-20">
                                 <Link
+                                    href={route("proyek-guru.show", proyek.id)}
                                     as="button"
                                     className="py-1 px-3 bg-first text-white rounded-full"
                                 >

@@ -1,20 +1,15 @@
 import ProgressBar from "@/Components/General/ProgressBar";
 import SubLayout from "@/Layouts/SubLayout";
 import { Head, Link, usePage } from "@inertiajs/react";
-import { useEffect } from "react";
 import Swal from "sweetalert2";
 
 export default function ProyekSiswa({ auth }) {
     const { proyeks } = usePage().props;
 
-    useEffect(() => {
-        console.log(proyeks);
-    }, []);
-
-    const popupFeedback = () => {
+    const popupFeedback = (catatan) => {
         Swal.fire({
             title: "Feedback",
-            text: "Ini Isi Feedback Yang Diberikan Guru ke Siswanya",
+            text: `${catatan}`,
             showConfirmButton: false,
             customClass: {
                 title: "block text-xl w-[90%] mx-auto pb-4 text-left text-blue-500 border-b-2",
@@ -69,7 +64,19 @@ export default function ProyekSiswa({ auth }) {
                                 </div>
                             </div>
                             <div className="ml-auto flex items-center w-36 justify-between">
-                                <button onClick={popupFeedback}>
+                                <button
+                                    onClick={() =>
+                                        popupFeedback(
+                                            filteredProyekResultById.length != 0
+                                                ? filteredProyekResultById[0]
+                                                      .catatan == null
+                                                    ? "Belum Ada Catatan Dari Guru"
+                                                    : filteredProyekResultById[0]
+                                                          .catatan
+                                                : "Segera Kerjakan Proyekmu"
+                                        )
+                                    }
+                                >
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
                                         viewBox="0 0 24 24"
@@ -86,7 +93,10 @@ export default function ProyekSiswa({ auth }) {
                                 </button>
                                 <p className="text-lg py-2 px-4 bg-first rounded-full">
                                     {filteredProyekResultById.length != 0
-                                        ? filteredProyekResultById[0].nilai
+                                        ? filteredProyekResultById[0].nilai ==
+                                          null
+                                            ? 0
+                                            : filteredProyekResultById[0].nilai
                                         : "0"}
                                     /100
                                 </p>

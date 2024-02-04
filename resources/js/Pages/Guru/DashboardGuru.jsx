@@ -1,6 +1,7 @@
 import { Head, Link } from "@inertiajs/react";
 import {
     iconAbsen,
+    iconData,
     iconMateri,
     iconReferensi,
     iconTest,
@@ -13,7 +14,7 @@ export default function DashboardGuru({ auth }) {
         <MainLayoutGuru auth={auth}>
             <Head title="Dashboard" />
             <img
-                className="w-60 absolute right-0 top-0"
+                className="w-52 absolute right-0 top-0"
                 src={logoNextMedia}
                 alt="logo next media"
             />
@@ -25,6 +26,12 @@ export default function DashboardGuru({ auth }) {
                     <button>
                         <img className="w-36 mb-10" src={iconAbsen} alt="" />
                         <span>ABSEN</span>
+                    </button>
+                </Link>
+                <Link href={route("data-siswa.index")}>
+                    <button>
+                        <img className="w-40 mb-10" src={iconData} alt="" />
+                        <span>DATA MASTER</span>
                     </button>
                 </Link>
                 <Link href={route("test-guru")}>

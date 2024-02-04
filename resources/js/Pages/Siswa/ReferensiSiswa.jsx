@@ -1,13 +1,9 @@
 import SubLayout from "@/Layouts/SubLayout";
 import { Head, usePage } from "@inertiajs/react";
-import { useEffect } from "react";
+import { url } from "../../../utility/url";
 
 export default function ReferensiSiswa({ auth }) {
     const { referensis } = usePage().props;
-
-    useEffect(() => {
-        console.log(referensis);
-    }, []);
 
     return (
         <SubLayout auth={auth}>
@@ -21,7 +17,7 @@ export default function ReferensiSiswa({ auth }) {
                         <img
                             key={index}
                             className="max-h-80"
-                            src={referensi.gambar}
+                            src={`${url}/Referensi/gambar/${referensi.gambar}`}
                             alt={`referensi logo ${index}`}
                         />
                     );

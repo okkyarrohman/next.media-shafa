@@ -6,12 +6,16 @@ export default function SidebarGuru({ auth }) {
     return (
         <div className="w-96 h-screen bg-second fixed p-10 z-10">
             <div className="w-full h-full">
-                <div className="flex items-center gap-6 mb-24">
+                <Link
+                    href={route("profile.edit")}
+                    as="button"
+                    className="flex items-center gap-6 mb-24"
+                >
                     <img className="rounded-full size-24" src={url} alt="" />
                     <p className="text-2xl line-clamp-2 text-white">
                         {auth.user.name}
                     </p>
-                </div>
+                </Link>
                 <ul className="*:text-2xl *:my-8 *:text-white">
                     <li>
                         <Link
@@ -55,6 +59,28 @@ export default function SidebarGuru({ auth }) {
                                         />
                                     </svg>
                                     Absen
+                                </Link>
+                            </li>
+                            <li>
+                                <Link
+                                    className="flex items-center gap-2"
+                                    href={route("data-siswa.index")}
+                                >
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        strokeWidth="1.5"
+                                        stroke="currentColor"
+                                        className="w-6 h-6"
+                                    >
+                                        <path
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"
+                                        />
+                                    </svg>
+                                    Data Master
                                 </Link>
                             </li>
                             <li>

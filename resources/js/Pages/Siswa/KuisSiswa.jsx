@@ -1,19 +1,20 @@
 import SubLayout from "@/Layouts/SubLayout";
 import { Head, Link, usePage } from "@inertiajs/react";
-import { useEffect } from "react";
 
 export default function KuisSiswa({ auth }) {
-    const { kategoris } = usePage().props;
-
-    useEffect(() => {
-        console.log(kategoris);
-    }, []);
+    const { kategoris, hasils } = usePage().props;
 
     return (
         <SubLayout auth={auth}>
             <Head title="Kuis" />
             <h1 className="font-medium text-4xl text-center mb-24">KUIS</h1>
             {kategoris.map((kategori, index) => {
+                const filteredHasilKuis = hasils
+                    .filter((hasil) => hasil.kategori_id == kategori.id)
+                    .find((hasil) => hasil.user_id == auth.user.id);
+
+                console.log(filteredHasilKuis);
+
                 return (
                     <div
                         key={index}
@@ -31,7 +32,10 @@ export default function KuisSiswa({ auth }) {
                                 </Link>
                             </div>
                             <p className="text-lg py-2 px-4 bg-first rounded-full">
-                                75/100
+                                {filteredHasilKuis
+                                    ? filteredHasilKuis.total_points
+                                    : 0}
+                                /100
                             </p>
                         </div>
                     </div>

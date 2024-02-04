@@ -1,7 +1,9 @@
 import bgSekolah from "./background-sekolah.png";
 import logoNextMedia from "./logo-nextmedia.png";
 import logoNextMediaText from "./logo-nextmedia-text.png";
+import iconUser from "./icon-user.png";
 import iconAbsen from "./icon-absen.png";
+import iconData from "./icon-data.png";
 import iconTest from "./icon-test.png";
 import iconReferensi from "./icon-referensi.png";
 import iconMateri from "./icon-materi.png";
@@ -13,7 +15,9 @@ export {
     bgSekolah,
     logoNextMedia,
     logoNextMediaText,
+    iconUser,
     iconAbsen,
+    iconData,
     iconTest,
     iconReferensi,
     iconMateri,

@@ -1,29 +1,22 @@
 import BackButton from "@/Components/General/BackButton";
 import ProgressBar from "@/Components/General/ProgressBar";
 import StatusIcon from "@/Components/General/StatusIcon";
+import TextInput from "@/Components/TextInput";
 import SubLayout from "@/Layouts/SubLayout";
-import { Head, Link, router, usePage } from "@inertiajs/react";
+import { Head, router, usePage } from "@inertiajs/react";
 import { useEffect } from "react";
 
-export default function DetailProyekSiswa({ auth }) {
-    const { proyeks } = usePage().props;
+export default function DetailHasilProyekGuru({ auth }) {
+    const { hasilProyeks } = usePage().props;
+    const hasilProyekId = localStorage.getItem("ID_HASIL_PROYEK");
 
-    const filteredProyekResultById = proyeks[0].hasil_proyek.filter(
-        (hasil) => hasil.user_id == auth.user.id
+    const filteredHasilProyeksById = hasilProyeks.filter(
+        (hasil) => hasil.id == hasilProyekId
     );
 
-    useEffect(() => {
-        console.log(proyeks);
-    }, []);
-
-    const handleStepProyekClick = (step, id) => {
-        localStorage.setItem("CURRENT_STEP_PROYEK", step);
-        router.visit(`/proyek/${id}/edit`);
-    };
-
     let percentage = 0;
-    if (filteredProyekResultById.length > 0) {
-        filteredProyekResultById.map((resultItem) => {
+    if (filteredHasilProyeksById.length > 0) {
+        filteredHasilProyeksById.map((resultItem) => {
             const totalAnswers = ["answer1", "answer2", "answer3", "answer4"];
             const filledAnswers = totalAnswers.filter(
                 (answer) => resultItem[answer]
@@ -33,13 +26,22 @@ export default function DetailProyekSiswa({ auth }) {
         });
     }
 
+    const handleStepProyekClick = (step, id) => {
+        localStorage.setItem("CURRENT_STEP_PROYEK", step);
+        router.visit(`/hasil-proyek/${id}/edit`);
+    };
+
+    useEffect(() => {
+        console.log(filteredHasilProyeksById);
+    }, []);
+
     return (
         <SubLayout auth={auth}>
             <Head title="Proyek" />
             <div className="flex items-start mb-24">
                 <BackButton />
                 <h1 className="font-medium text-4xl text-center w-full">
-                    {proyeks[0].nama}
+                    {filteredHasilProyeksById[0].user.name}
                 </h1>
             </div>
             <div className="w-1/4 ml-auto mb-8">
@@ -58,38 +60,38 @@ export default function DetailProyekSiswa({ auth }) {
                     {/* Row Tahap 1 */}
                     <tr className="*:py-4 bg-abu *:border-2">
                         <td className="text-center">1</td>
-                        <td className="pl-8">{proyeks[0].proses1}</td>
+                        <td className="pl-8">
+                            {filteredHasilProyeksById[0].proyek.proses1}
+                        </td>
                         <td>
                             <div className="w-fit mx-auto">
                                 <StatusIcon
                                     accept="Terima"
                                     decline="Tolak"
                                     submit="Terkirim"
-                                    process="Diproses"
+                                    process="Proses"
                                     status={
-                                        filteredProyekResultById.length != 0
-                                            ? filteredProyekResultById[0]
-                                                  .answer1 != null &&
-                                              filteredProyekResultById[0]
+                                        filteredHasilProyeksById[0].answer1 ==
+                                        null
+                                            ? "Proses"
+                                            : filteredHasilProyeksById[0]
                                                   .konfirmasi1 == null
-                                                ? "Terkirim"
-                                                : filteredProyekResultById[0]
-                                                      .konfirmasi1 == null
-                                                ? "Diproses"
-                                                : filteredProyekResultById[0]
-                                                      .konfirmasi1
-                                            : "Diproses"
+                                            ? "Terkirim"
+                                            : filteredHasilProyeksById[0]
+                                                  .konfirmasi1
                                     }
                                 />
                             </div>
                         </td>
                         <td>
-                            {/* <Link href={route("tahap-1-proyek-siswa")}> */}
                             <button
                                 type="button"
                                 className="w-fit mx-auto block"
                                 onClick={() =>
-                                    handleStepProyekClick(1, proyeks[0].id)
+                                    handleStepProyekClick(
+                                        1,
+                                        filteredHasilProyeksById[0].id
+                                    )
                                 }
                             >
                                 <svg
@@ -108,27 +110,25 @@ export default function DetailProyekSiswa({ auth }) {
                     {/* Row Tahap 2 */}
                     <tr className="*:py-4 bg-white *:border-2">
                         <td className="text-center">2</td>
-                        <td className="pl-8">{proyeks[0].proses2}</td>
+                        <td className="pl-8">
+                            {filteredHasilProyeksById[0].proyek.proses2}
+                        </td>
                         <td>
                             <div className="w-fit mx-auto">
                                 <StatusIcon
                                     accept="Terima"
                                     decline="Tolak"
                                     submit="Terkirim"
-                                    process="Diproses"
+                                    process="Proses"
                                     status={
-                                        filteredProyekResultById.length != 0
-                                            ? filteredProyekResultById[0]
-                                                  .answer2 != null &&
-                                              filteredProyekResultById[0]
+                                        filteredHasilProyeksById[0].answer2 ==
+                                        null
+                                            ? "Proses"
+                                            : filteredHasilProyeksById[0]
                                                   .konfirmasi2 == null
-                                                ? "Terkirim"
-                                                : filteredProyekResultById[0]
-                                                      .konfirmasi2 == null
-                                                ? "Diproses"
-                                                : filteredProyekResultById[0]
-                                                      .konfirmasi2
-                                            : "Diproses"
+                                            ? "Terkirim"
+                                            : filteredHasilProyeksById[0]
+                                                  .konfirmasi2
                                     }
                                 />
                             </div>
@@ -138,7 +138,10 @@ export default function DetailProyekSiswa({ auth }) {
                                 type="button"
                                 className="w-fit mx-auto block"
                                 onClick={() =>
-                                    handleStepProyekClick(2, proyeks[0].id)
+                                    handleStepProyekClick(
+                                        2,
+                                        filteredHasilProyeksById[0].id
+                                    )
                                 }
                             >
                                 <svg
@@ -156,27 +159,25 @@ export default function DetailProyekSiswa({ auth }) {
                     {/* Row Tahap 3 */}
                     <tr className="*:py-4 bg-abu *:border-2">
                         <td className="text-center">3</td>
-                        <td className="pl-8">{proyeks[0].proses3}</td>
+                        <td className="pl-8">
+                            {filteredHasilProyeksById[0].proyek.proses3}
+                        </td>
                         <td>
                             <div className="w-fit mx-auto">
                                 <StatusIcon
                                     accept="Terima"
                                     decline="Tolak"
                                     submit="Terkirim"
-                                    process="Diproses"
+                                    process="Proses"
                                     status={
-                                        filteredProyekResultById.length != 0
-                                            ? filteredProyekResultById[0]
-                                                  .answer3 != null &&
-                                              filteredProyekResultById[0]
+                                        filteredHasilProyeksById[0].answer3 ==
+                                        null
+                                            ? "Proses"
+                                            : filteredHasilProyeksById[0]
                                                   .konfirmasi3 == null
-                                                ? "Terkirim"
-                                                : filteredProyekResultById[0]
-                                                      .konfirmasi3 == null
-                                                ? "Diproses"
-                                                : filteredProyekResultById[0]
-                                                      .konfirmasi3
-                                            : "Diproses"
+                                            ? "Terkirim"
+                                            : filteredHasilProyeksById[0]
+                                                  .konfirmasi3
                                     }
                                 />
                             </div>
@@ -186,7 +187,10 @@ export default function DetailProyekSiswa({ auth }) {
                                 type="button"
                                 className="w-fit mx-auto block"
                                 onClick={() =>
-                                    handleStepProyekClick(3, proyeks[0].id)
+                                    handleStepProyekClick(
+                                        3,
+                                        filteredHasilProyeksById[0].id
+                                    )
                                 }
                             >
                                 <svg
@@ -204,27 +208,25 @@ export default function DetailProyekSiswa({ auth }) {
                     {/* Row Tahap 4 */}
                     <tr className="*:py-4 bg-white *:border-2">
                         <td className="text-center">4</td>
-                        <td className="pl-8">{proyeks[0].proses4}</td>
+                        <td className="pl-8">
+                            {filteredHasilProyeksById[0].proyek.proses4}
+                        </td>
                         <td>
                             <div className="w-fit mx-auto">
                                 <StatusIcon
                                     accept="Terima"
                                     decline="Tolak"
                                     submit="Terkirim"
-                                    process="Diproses"
+                                    process="Proses"
                                     status={
-                                        filteredProyekResultById.length != 0
-                                            ? filteredProyekResultById[0]
-                                                  .answer4 != null &&
-                                              filteredProyekResultById[0]
+                                        filteredHasilProyeksById[0].answer4 ==
+                                        null
+                                            ? "Proses"
+                                            : filteredHasilProyeksById[0]
                                                   .konfirmasi4 == null
-                                                ? "Terkirim"
-                                                : filteredProyekResultById[0]
-                                                      .konfirmasi4 == null
-                                                ? "Diproses"
-                                                : filteredProyekResultById[0]
-                                                      .konfirmasi4
-                                            : "Diproses"
+                                            ? "Terkirim"
+                                            : filteredHasilProyeksById[0]
+                                                  .konfirmasi4
                                     }
                                 />
                             </div>
@@ -234,7 +236,10 @@ export default function DetailProyekSiswa({ auth }) {
                                 type="button"
                                 className="w-fit mx-auto block"
                                 onClick={() =>
-                                    handleStepProyekClick(4, proyeks[0].id)
+                                    handleStepProyekClick(
+                                        4,
+                                        filteredHasilProyeksById[0].id
+                                    )
                                 }
                             >
                                 <svg
@@ -251,6 +256,62 @@ export default function DetailProyekSiswa({ auth }) {
                     </tr>
                 </tbody>
             </table>
+            <button
+                type="button"
+                className="text-lg px-8 py-2.5 mt-8 bg-[#F26969] rounded-full block w-fit ml-auto"
+                onClick={() =>
+                    handleStepProyekClick(
+                        "nilai",
+                        filteredHasilProyeksById[0].id
+                    )
+                }
+            >
+                Upload Nilai
+            </button>
+            <div className="bg-white rounded-xl p-8 w-3/5 mx-auto mt-16">
+                <div className="mb-4">
+                    <label
+                        className="block text-3xl font-semibold mb-2"
+                        htmlFor="nilai"
+                    >
+                        Nilai
+                    </label>
+                    <TextInput
+                        id="nilai"
+                        type="text"
+                        name="nilai"
+                        placeholder="Masukkan Nilai..."
+                        className="w-4/5 block mx-auto border border-black bg-transparent rounded-lg"
+                        value={
+                            filteredHasilProyeksById[0].nilai != null
+                                ? filteredHasilProyeksById[0].nilai
+                                : "Belum Dinilai"
+                        }
+                        disabled
+                    />
+                </div>
+                <div className="mb-4">
+                    <label
+                        className="block text-3xl font-semibold mb-2"
+                        htmlFor="catatan"
+                    >
+                        Catatan
+                    </label>
+                    <textarea
+                        className="w-4/5 block mx-auto border border-black bg-transparent rounded-lg"
+                        placeholder="Masukkan Catatan..."
+                        name="catatan"
+                        id="catatan"
+                        rows="10"
+                        value={
+                            filteredHasilProyeksById[0].catatan != null
+                                ? filteredHasilProyeksById[0].catatan
+                                : "Belum Ada Catatan"
+                        }
+                        disabled
+                    ></textarea>
+                </div>
+            </div>
         </SubLayout>
     );
 }

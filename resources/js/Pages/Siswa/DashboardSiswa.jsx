@@ -18,7 +18,7 @@ export default function DashboardSiswa({ auth }) {
         <MainLayout auth={auth}>
             <Head title="Dashboard" />
             <img
-                className="w-60 absolute right-0 top-0"
+                className="w-52 absolute right-0 top-0"
                 src={logoNextMedia}
                 alt="logo next media"
             />

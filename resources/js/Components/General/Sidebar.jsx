@@ -6,12 +6,16 @@ export default function Sidebar({ auth }) {
     return (
         <div className="w-96 h-screen bg-second fixed p-10 z-10">
             <div className="w-full h-full">
-                <div className="flex items-center gap-6 mb-24">
+                <Link
+                    href={route("profile.edit")}
+                    as="button"
+                    className="flex items-center gap-6 mb-24"
+                >
                     <img className="rounded-full size-24" src={url} alt="" />
                     <p className="text-2xl line-clamp-2 text-white">
                         {auth.user.name}
                     </p>
-                </div>
+                </Link>
                 <ul className="*:text-2xl *:my-8 *:text-white">
                     <li>
                         <Link

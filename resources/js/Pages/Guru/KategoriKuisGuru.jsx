@@ -1,13 +1,8 @@
 import SubLayoutGuru from "@/Layouts/SubLayoutGuru";
 import { Head, Link, router, usePage } from "@inertiajs/react";
-import { useEffect } from "react";
 
 export default function KategoriKuisGuru({ auth }) {
     const { kategoris } = usePage().props;
-
-    useEffect(() => {
-        console.log(kategoris);
-    }, []);
 
     const handleKategoriClick = (id) => {
         localStorage.setItem("ID_KATEGORI_KUIS", id);
