@@ -28,7 +28,7 @@ export default function DashboardGuru({ auth }) {
                         <span>ABSEN</span>
                     </button>
                 </Link>
-                <Link href={route("absen-guru")}>
+                <Link href={route("data-siswa.index")}>
                     <button>
                         <img className="w-40 mb-10" src={iconData} alt="" />
                         <span>DATA MASTER</span>
