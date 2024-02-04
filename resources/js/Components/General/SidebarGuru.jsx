@@ -64,7 +64,7 @@ export default function SidebarGuru({ auth }) {
                             <li>
                                 <Link
                                     className="flex items-center gap-2"
-                                    href={route("absen-guru")}
+                                    href={route("data-siswa.index")}
                                 >
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
