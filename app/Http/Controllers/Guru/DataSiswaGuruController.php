@@ -15,7 +15,7 @@ class DataSiswaGuruController extends Controller
      */
     public function index()
     {
-        $user = User::where('total_login')->get();
+        $user = User::all();
 
         return Inertia::render('Guru/DataMasterGuru', [
             'total_login' => $user,
