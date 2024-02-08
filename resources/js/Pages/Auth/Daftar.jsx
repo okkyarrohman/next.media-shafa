@@ -63,23 +63,6 @@ export default function Daftar() {
                             </div>
                             <div className="mb-6">
                                 <label className="block mb-3" htmlFor="">
-                                    Username
-                                </label>
-                                <TextInput
-                                    id="username"
-                                    type="text"
-                                    name="username"
-                                    isFocused={true}
-                                    placeholder="Masukkan Username..."
-                                    className="w-full bg-transparent border border-[#ABABAB]"
-                                    // value={data.username}
-                                    // onChange={(e) =>
-                                    //     setData("username", e.target.value)
-                                    // }
-                                />
-                            </div>
-                            <div className="mb-6">
-                                <label className="block mb-3" htmlFor="">
                                     Email
                                 </label>
                                 <TextInput
@@ -182,7 +165,7 @@ export default function Daftar() {
                                     className="block mb-3"
                                     htmlFor="password_confirmation"
                                 >
-                                    Password
+                                    Konfirmasi Password
                                 </label>
                                 <div className="relative">
                                     <TextInput

@@ -1,6 +1,5 @@
 import SubLayoutGuru from "@/Layouts/SubLayoutGuru";
 import { Head, Link, usePage } from "@inertiajs/react";
-import { useEffect } from "react";
 import { formatDate } from "../../../utility/formatDate";
 
 export default function HasilKuisGuru({ auth }) {
@@ -14,11 +13,6 @@ export default function HasilKuisGuru({ auth }) {
     const filteredHasilById = hasils.filter(
         (hasil) => hasil.kategori_id == kategoriId
     );
-
-    useEffect(() => {
-        console.log(filteredHasilById);
-        console.log("Kategoris", kategoris);
-    }, []);
 
     return (
         <SubLayoutGuru auth={auth}>

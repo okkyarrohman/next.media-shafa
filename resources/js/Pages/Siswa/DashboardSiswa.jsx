@@ -7,13 +7,8 @@ import {
     iconTest,
     logoNextMedia,
 } from "../../../assets";
-import { useEffect } from "react";
 
 export default function DashboardSiswa({ auth }) {
-    useEffect(() => {
-        console.log(auth);
-    }, []);
-
     return (
         <MainLayout auth={auth}>
             <Head title="Dashboard" />

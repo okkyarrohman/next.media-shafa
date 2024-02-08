@@ -1,13 +1,8 @@
 import SubLayoutGuru from "@/Layouts/SubLayoutGuru";
 import { Head, Link, usePage } from "@inertiajs/react";
-import { useEffect } from "react";
 
 export default function ProyekGuru({ auth }) {
     const { proyeks } = usePage().props;
-
-    useEffect(() => {
-        console.log(proyeks);
-    }, []);
 
     return (
         <SubLayoutGuru auth={auth}>

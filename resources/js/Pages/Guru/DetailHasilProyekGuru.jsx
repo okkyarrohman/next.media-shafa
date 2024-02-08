@@ -4,7 +4,6 @@ import StatusIcon from "@/Components/General/StatusIcon";
 import TextInput from "@/Components/TextInput";
 import SubLayout from "@/Layouts/SubLayout";
 import { Head, router, usePage } from "@inertiajs/react";
-import { useEffect } from "react";
 
 export default function DetailHasilProyekGuru({ auth }) {
     const { hasilProyeks } = usePage().props;
@@ -30,10 +29,6 @@ export default function DetailHasilProyekGuru({ auth }) {
         localStorage.setItem("CURRENT_STEP_PROYEK", step);
         router.visit(`/hasil-proyek/${id}/edit`);
     };
-
-    useEffect(() => {
-        console.log(filteredHasilProyeksById);
-    }, []);
 
     return (
         <SubLayout auth={auth}>

@@ -36,7 +36,7 @@ export default function Masuk() {
                         <form onSubmit={handleFormSubmit}>
                             <div className="mb-6">
                                 <label className="block mb-3" htmlFor="">
-                                    Username
+                                    Email
                                 </label>
                                 <TextInput
                                     id="email"
