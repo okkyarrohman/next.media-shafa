@@ -3,7 +3,6 @@ import ProgressBar from "@/Components/General/ProgressBar";
 import StatusIcon from "@/Components/General/StatusIcon";
 import SubLayout from "@/Layouts/SubLayout";
 import { Head, Link, router, usePage } from "@inertiajs/react";
-import { useEffect } from "react";
 
 export default function DetailProyekSiswa({ auth }) {
     const { proyeks } = usePage().props;
@@ -11,10 +10,6 @@ export default function DetailProyekSiswa({ auth }) {
     const filteredProyekResultById = proyeks[0].hasil_proyek.filter(
         (hasil) => hasil.user_id == auth.user.id
     );
-
-    useEffect(() => {
-        console.log(proyeks);
-    }, []);
 
     const handleStepProyekClick = (step, id) => {
         localStorage.setItem("CURRENT_STEP_PROYEK", step);

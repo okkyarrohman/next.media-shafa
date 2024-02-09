@@ -43,6 +43,12 @@ class AuthenticatedSessionController extends Controller
         $siswa = $request->user()->hasRole('siswa');
 
         if ($guru) {
+            $user = Auth::user();
+
+            // Set waktu login untuk sesi ini
+            $user->session_login_at = Carbon::now();
+            $user->save();
+
             return redirect()->route('dashboard-guru.index');
         } else if ($siswa) {
             $user = Auth::user();

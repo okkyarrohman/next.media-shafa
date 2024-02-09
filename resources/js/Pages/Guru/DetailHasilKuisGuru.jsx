@@ -1,13 +1,8 @@
 import SubLayoutGuru from "@/Layouts/SubLayoutGuru";
 import { Head, Link, usePage } from "@inertiajs/react";
-import { useEffect } from "react";
 
 export default function DetailHasilKuisGuru({ auth }) {
     const { hasils } = usePage().props;
-
-    useEffect(() => {
-        console.log(hasils);
-    }, []);
 
     return (
         <SubLayoutGuru auth={auth}>

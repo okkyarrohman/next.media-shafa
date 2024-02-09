@@ -1,5 +1,6 @@
 import SubLayout from "@/Layouts/SubLayout";
 import { Head, Link, usePage } from "@inertiajs/react";
+import { checkDate } from "../../../utility/checkTenggat";
 
 export default function KuisSiswa({ auth }) {
     const { kategoris, hasils } = usePage().props;
@@ -13,7 +14,7 @@ export default function KuisSiswa({ auth }) {
                     .filter((hasil) => hasil.kategori_id == kategori.id)
                     .find((hasil) => hasil.user_id == auth.user.id);
 
-                console.log(filteredHasilKuis);
+                // console.log(filteredHasilKuis);
 
                 return (
                     <div
@@ -25,7 +26,11 @@ export default function KuisSiswa({ auth }) {
                                 <div className="size-14 rounded-full bg-yellow-500 flex justify-center items-center font-semibold text-lg">
                                     {index + 1}
                                 </div>
-                                <Link href={route("kuis.show", kategori.id)}>
+                                <Link
+                                    as="button"
+                                    href={route("kuis.show", kategori.id)}
+                                    disabled={checkDate(kategori.tenggat)}
+                                >
                                     <p className="text-lg uppercase">
                                         {kategori.kuis}
                                     </p>

@@ -140,7 +140,67 @@ export default function TahapanProyekSiswa({ auth }) {
                     >
                         Batal
                     </Link>
-                    <button
+                    {currentStep == 1 &&
+                        hasilProyeks[0].konfirmasi1 != "Terima" && (
+                            <button
+                                type="button"
+                                className="bg-first font-semibold py-4 px-16 rounded-lg text-white"
+                                onClick={
+                                    filteredHasilProyeksById
+                                        ? currentStep == 1 &&
+                                          handleAnswer1Update
+                                        : handleProyekStore
+                                }
+                            >
+                                Kirim
+                            </button>
+                        )}
+                    {currentStep == 2 &&
+                        hasilProyeks[0].konfirmasi2 != "Terima" && (
+                            <button
+                                type="button"
+                                className="bg-first font-semibold py-4 px-16 rounded-lg text-white"
+                                onClick={
+                                    filteredHasilProyeksById
+                                        ? currentStep == 2 &&
+                                          handleAnswer2Update
+                                        : handleProyekStore
+                                }
+                            >
+                                Kirim
+                            </button>
+                        )}
+                    {currentStep == 3 &&
+                        hasilProyeks[0].konfirmasi3 != "Terima" && (
+                            <button
+                                type="button"
+                                className="bg-first font-semibold py-4 px-16 rounded-lg text-white"
+                                onClick={
+                                    filteredHasilProyeksById
+                                        ? currentStep == 3 &&
+                                          handleAnswer3Update
+                                        : handleProyekStore
+                                }
+                            >
+                                Kirim
+                            </button>
+                        )}
+                    {currentStep == 4 &&
+                        hasilProyeks[0].konfirmasi4 != "Terima" && (
+                            <button
+                                type="button"
+                                className="bg-first font-semibold py-4 px-16 rounded-lg text-white"
+                                onClick={
+                                    filteredHasilProyeksById
+                                        ? currentStep == 4 &&
+                                          handleAnswer3Update
+                                        : handleProyekStore
+                                }
+                            >
+                                Kirim
+                            </button>
+                        )}
+                    {/* <button
                         type="button"
                         className="bg-first font-semibold py-4 px-16 rounded-lg text-white"
                         onClick={
@@ -158,7 +218,7 @@ export default function TahapanProyekSiswa({ auth }) {
                         }
                     >
                         Kirim
-                    </button>
+                    </button> */}
                 </div>
             </form>
         </SubLayout>

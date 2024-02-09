@@ -2,7 +2,6 @@ import BackButton from "@/Components/General/BackButton";
 import TextInput from "@/Components/TextInput";
 import SubLayoutGuru from "@/Layouts/SubLayoutGuru";
 import { Head, Link, useForm, usePage } from "@inertiajs/react";
-import { useEffect } from "react";
 import { url } from "../../../utility/url";
 import OptionKonfirmasiProyek from "@/Components/General/OptionKonfirmasiProyek";
 
@@ -23,10 +22,6 @@ export default function NilaiHasilProyek({ auth }) {
         e.preventDefault();
         patch(route("hasil-proyek.update", hasilProyeks[0].id));
     };
-
-    useEffect(() => {
-        console.log(data);
-    });
 
     return (
         <SubLayoutGuru auth={auth}>

@@ -1,15 +1,9 @@
 import SubLayoutGuru from "@/Layouts/SubLayoutGuru";
 import { Head, Link, router, usePage } from "@inertiajs/react";
-import { useEffect } from "react";
 import { formatDate } from "../../../utility/formatDate";
 
 export default function HasilProyekGuru({ auth }) {
     const { proyeks, hasilProyeks } = usePage().props;
-
-    useEffect(() => {
-        console.log(proyeks);
-        console.log("Hasil", hasilProyeks);
-    }, []);
 
     const handleHasilOnClick = (id) => {
         localStorage.setItem("ID_HASIL_PROYEK", id);

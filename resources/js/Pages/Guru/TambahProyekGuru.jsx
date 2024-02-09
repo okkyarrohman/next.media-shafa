@@ -3,7 +3,6 @@ import UploadProyek from "@/Components/General/UploadProyek";
 import TextInput from "@/Components/TextInput";
 import SubLayoutGuru from "@/Layouts/SubLayoutGuru";
 import { Head, Link, useForm } from "@inertiajs/react";
-import { useEffect, useState } from "react";
 
 export default function TambahProyekGuru({ auth }) {
     const { data, setData, post } = useForm({
@@ -31,14 +30,6 @@ export default function TambahProyekGuru({ auth }) {
         e.preventDefault();
         post(route("proyek-guru.store"));
     };
-
-    useEffect(() => {
-        console.log("Semua File Terupload", uploadedFiles);
-        console.log("File1 Didata", data.file1);
-        console.log("File2 Didata", data.file2);
-        console.log("File3 Didata", data.file3);
-        console.log("File4 Didata", data.file4);
-    }, [uploadedFiles]);
 
     return (
         <SubLayoutGuru auth={auth}>
