@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('soal_id')->nullable();
             $table->foreign('soal_id')->references('id')->on('soals')->onDelete('cascade');
-            $table->string('nama')->nullable();
+            $table->longText('nama')->nullable();
             $table->integer('point')->nullable();
             $table->timestamps();
         });
