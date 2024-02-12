@@ -38,7 +38,7 @@ export default function DataMasterGuru({ auth }) {
                                 <p className="text-lg py-2 px-4">
                                     {user.total_login != null
                                         ? user.total_login
-                                        : 0}
+                                        : 0} Menit
                                 </p>
                             </div>
                         </div>
