@@ -10,6 +10,7 @@ import iconMateri from "./icon-materi.png";
 import placeholderQR from "./placeholder-qr.png";
 import placeholderPDF from "./CV Febrian Daffa Eka Putra.pdf";
 import imageSoal1 from "./image-soal-1.png";
+import QRAbsensi from "./QrAbsensi.jpg";
 
 export {
     bgSekolah,
@@ -24,4 +25,5 @@ export {
     placeholderQR,
     placeholderPDF,
     imageSoal1,
+    QRAbsensi,
 };
