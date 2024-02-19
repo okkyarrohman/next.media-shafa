@@ -1,7 +1,7 @@
 import BackButton from "@/Components/General/BackButton";
 import SubLayout from "@/Layouts/SubLayout";
 import { Head, Link, useForm, usePage } from "@inertiajs/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { url } from "../../../utility/url";
 import UploadTes from "@/Components/General/UploadTes";
 
@@ -12,6 +12,10 @@ export default function TahapanProyekSiswa({ auth }) {
     const filteredHasilProyeksById = hasilProyeks.find(
         (hasilProyek) => hasilProyek.user_id == auth.user.id
     );
+
+    useEffect(() => {
+        console.log(filteredHasilProyeksById);
+    }, []);
 
     const { data, setData, post, patch } = useForm({
         id: filteredHasilProyeksById ? filteredHasilProyeksById.id : "",
@@ -87,7 +91,7 @@ export default function TahapanProyekSiswa({ auth }) {
             <Head title="Proyek" />
             <div className="flex items-start mb-24">
                 <BackButton />
-                <h1 className="font-medium text-4xl text-center w-full">
+                <h1 className="w-full text-4xl font-medium text-center">
                     TAHAP {currentStep} <br />
                     {proyeks[0][`proses${currentStep}`]}
                 </h1>
@@ -102,7 +106,7 @@ export default function TahapanProyekSiswa({ auth }) {
             <form className="w-4/5 mx-auto">
                 {currentStep == 1 && (
                     <textarea
-                        className="w-4/5 block mx-auto border border-black rounded-lg"
+                        className="block w-4/5 mx-auto border border-black rounded-lg"
                         placeholder="Masukkan Jawaban..."
                         name="answer1"
                         id="answer1"
@@ -132,77 +136,106 @@ export default function TahapanProyekSiswa({ auth }) {
                         idUpload="answer4"
                     />
                 )}
-                <div className="flex gap-12 justify-center mt-16">
+                <div className="flex justify-center gap-12 mt-16">
                     <Link
                         href={route("proyek.index")}
                         as="button"
-                        className="border border-first bg-white font-semibold py-4 px-16 rounded-lg text-first"
+                        className="px-16 py-4 font-semibold bg-white border rounded-lg border-first text-first"
                     >
                         Batal
                     </Link>
-                    {currentStep == 1 &&
-                        hasilProyeks[0].konfirmasi1 != "Terima" && (
-                            <button
-                                type="button"
-                                className="bg-first font-semibold py-4 px-16 rounded-lg text-white"
-                                onClick={
-                                    filteredHasilProyeksById
-                                        ? currentStep == 1 &&
-                                          handleAnswer1Update
-                                        : handleProyekStore
-                                }
-                            >
-                                Kirim
-                            </button>
-                        )}
-                    {currentStep == 2 &&
-                        hasilProyeks[0].konfirmasi2 != "Terima" && (
-                            <button
-                                type="button"
-                                className="bg-first font-semibold py-4 px-16 rounded-lg text-white"
-                                onClick={
-                                    filteredHasilProyeksById
-                                        ? currentStep == 2 &&
-                                          handleAnswer2Update
-                                        : handleProyekStore
-                                }
-                            >
-                                Kirim
-                            </button>
-                        )}
-                    {currentStep == 3 &&
-                        hasilProyeks[0].konfirmasi3 != "Terima" && (
-                            <button
-                                type="button"
-                                className="bg-first font-semibold py-4 px-16 rounded-lg text-white"
-                                onClick={
-                                    filteredHasilProyeksById
-                                        ? currentStep == 3 &&
-                                          handleAnswer3Update
-                                        : handleProyekStore
-                                }
-                            >
-                                Kirim
-                            </button>
-                        )}
-                    {currentStep == 4 &&
-                        hasilProyeks[0].konfirmasi4 != "Terima" && (
-                            <button
-                                type="button"
-                                className="bg-first font-semibold py-4 px-16 rounded-lg text-white"
-                                onClick={
-                                    filteredHasilProyeksById
-                                        ? currentStep == 4 &&
-                                          handleAnswer3Update
-                                        : handleProyekStore
-                                }
-                            >
-                                Kirim
-                            </button>
-                        )}
+                    {currentStep == 1 && (
+                        <button
+                            type="button"
+                            className={`px-16 py-4 font-semibold text-white rounded-lg ${
+                                hasilProyeks.length != 0 &&
+                                hasilProyeks[0].konfirmasi1 == "Terima"
+                                    ? "bg-gray-500"
+                                    : "bg-first"
+                            }`}
+                            disabled={
+                                hasilProyeks.length != 0 &&
+                                hasilProyeks[0].konfirmasi1 == "Terima"
+                            }
+                            onClick={
+                                filteredHasilProyeksById.length != 0
+                                    ? currentStep == 1 && handleAnswer1Update
+                                    : handleProyekStore
+                            }
+                        >
+                            Kirim
+                        </button>
+                    )}
+
+                    {currentStep == 2 && (
+                        <button
+                            type="button"
+                            className={`px-16 py-4 font-semibold text-white rounded-lg ${
+                                hasilProyeks.length != 0 &&
+                                hasilProyeks[0].konfirmasi2 == "Terima"
+                                    ? "bg-gray-500"
+                                    : "bg-first"
+                            }`}
+                            disabled={
+                                hasilProyeks.length != 0 &&
+                                hasilProyeks[0].konfirmasi2 == "Terima"
+                            }
+                            onClick={
+                                filteredHasilProyeksById != 0
+                                    ? currentStep == 2 && handleAnswer2Update
+                                    : handleProyekStore
+                            }
+                        >
+                            Kirim
+                        </button>
+                    )}
+                    {currentStep == 3 && (
+                        <button
+                            type="button"
+                            className={`px-16 py-4 font-semibold text-white rounded-lg ${
+                                hasilProyeks.length != 0 &&
+                                hasilProyeks[0].konfirmasi3 == "Terima"
+                                    ? "bg-gray-500"
+                                    : "bg-first"
+                            }`}
+                            disabled={
+                                hasilProyeks.length != 0 &&
+                                hasilProyeks[0].konfirmasi3 == "Terima"
+                            }
+                            onClick={
+                                filteredHasilProyeksById.length != 0
+                                    ? currentStep == 3 && handleAnswer3Update
+                                    : handleProyekStore
+                            }
+                        >
+                            Kirim
+                        </button>
+                    )}
+                    {currentStep == 4 && (
+                        <button
+                            type="button"
+                            className={`px-16 py-4 font-semibold text-white rounded-lg ${
+                                hasilProyeks.length != 0 &&
+                                hasilProyeks[0].konfirmasi4 == "Terima"
+                                    ? "bg-gray-500"
+                                    : "bg-first"
+                            }`}
+                            disabled={
+                                hasilProyeks.length != 0 &&
+                                hasilProyeks[0].konfirmasi4 == "Terima"
+                            }
+                            onClick={
+                                filteredHasilProyeksById.length != 0
+                                    ? currentStep == 4 && handleAnswer3Update
+                                    : handleProyekStore
+                            }
+                        >
+                            Kirim
+                        </button>
+                    )}
                     {/* <button
                         type="button"
-                        className="bg-first font-semibold py-4 px-16 rounded-lg text-white"
+                        className="px-16 py-4 font-semibold text-white rounded-lg bg-first"
                         onClick={
                             filteredHasilProyeksById
                                 ? currentStep == 1
