@@ -158,7 +158,7 @@ export default function TahapanProyekSiswa({ auth }) {
                                 hasilProyeks[0].konfirmasi1 == "Terima"
                             }
                             onClick={
-                                filteredHasilProyeksById.length != 0
+                                filteredHasilProyeksById
                                     ? currentStep == 1 && handleAnswer1Update
                                     : handleProyekStore
                             }
@@ -181,6 +181,7 @@ export default function TahapanProyekSiswa({ auth }) {
                                 hasilProyeks[0].konfirmasi2 == "Terima"
                             }
                             onClick={
+                                filteredHasilProyeksById &&
                                 filteredHasilProyeksById != 0
                                     ? currentStep == 2 && handleAnswer2Update
                                     : handleProyekStore
@@ -203,7 +204,7 @@ export default function TahapanProyekSiswa({ auth }) {
                                 hasilProyeks[0].konfirmasi3 == "Terima"
                             }
                             onClick={
-                                filteredHasilProyeksById.length != 0
+                                filteredHasilProyeksById
                                     ? currentStep == 3 && handleAnswer3Update
                                     : handleProyekStore
                             }
@@ -225,7 +226,7 @@ export default function TahapanProyekSiswa({ auth }) {
                                 hasilProyeks[0].konfirmasi4 == "Terima"
                             }
                             onClick={
-                                filteredHasilProyeksById.length != 0
+                                filteredHasilProyeksById
                                     ? currentStep == 4 && handleAnswer3Update
                                     : handleProyekStore
                             }
