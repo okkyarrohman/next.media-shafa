@@ -1,1 +1,1 @@
-export const url = "http://next-media.biz.id/storage";
+export const url = "https://next-media.biz.id/storage";
