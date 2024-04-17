@@ -2,6 +2,7 @@ import { Head, usePage } from "@inertiajs/react";
 import BackButton from "@/Components/General/BackButton";
 import SubLayoutGuru from "@/Layouts/SubLayoutGuru";
 import { url } from "../../../utility/url";
+import ReactPlayer from "react-player";
 
 export default function LihatMateriSiswa({ auth }) {
     const { materis: materi } = usePage().props;
@@ -22,10 +23,14 @@ export default function LihatMateriSiswa({ auth }) {
                 src={`${url}/Materi/file/${materi[0].file}`}
                 type="application/pdf"
             />
-            <embed
-                className="rounded-xl w-4/5 h-[30rem] mx-auto mt-12"
-                src={`${url}/Materi/video/${materi[0].video}`}
-            />
+            <div className="rounded-xl mx-auto w-4/5 overflow-hidden mt-12">
+                <ReactPlayer
+                    url={materi[0].link_video}
+                    width="100%"
+                    height="30rem"
+                    controls
+                />
+            </div>
         </SubLayoutGuru>
     );
 }

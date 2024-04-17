@@ -38,6 +38,7 @@ class MateriGuruController extends Controller
     {
         $materis = new Materi();
         $materis->nama = $request->nama;
+        $materis->link_video = $request->link_video;
 
         // Request column input type file
         if ($request->hasFile('file')) {
@@ -46,14 +47,6 @@ class MateriGuruController extends Controller
             $fileName = date('YmdHis') . "." . $extension;
             $file->move(storage_path('app/public/Materi/file/'), $fileName);
             $materis->file = $fileName;
-        }
-
-        if ($request->hasFile('video')) {
-            $video = $request->file('video');
-            $extension = $video->getClientOriginalName();
-            $videoName = date('YmdHis') . "." . $extension;
-            $video->move(storage_path('app/public/Materi/video/'), $videoName);
-            $materis->video = $videoName;
         }
 
         $materis->save();

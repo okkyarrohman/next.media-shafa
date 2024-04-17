@@ -13,7 +13,7 @@ class Materi extends Model
     protected $fillable = [
         'nama',
         'file',
-        'video',
+        'link_video',
         'status'
     ];
 }
