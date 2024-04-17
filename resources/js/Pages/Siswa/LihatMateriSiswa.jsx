@@ -20,6 +20,10 @@ export default function LihatMateriSiswa({ auth }) {
                 src={`${url}/Materi/file/${materi[0].file}`}
                 type="application/pdf"
             />
+            <embed
+                className="rounded-xl w-4/5 h-[30rem] mx-auto mt-12"
+                src={`${url}/Materi/video/${materi[0].video}`}
+            />
         </SubLayout>
     );
 }

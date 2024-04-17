@@ -6,6 +6,8 @@ import { url } from "../../../utility/url";
 export default function LihatMateriSiswa({ auth }) {
     const { materis: materi } = usePage().props;
 
+    console.log(materi);
+
     return (
         <SubLayoutGuru auth={auth}>
             <Head title="Materi" />
@@ -19,6 +21,10 @@ export default function LihatMateriSiswa({ auth }) {
                 className="rounded-xl w-4/5 h-[60rem] mx-auto"
                 src={`${url}/Materi/file/${materi[0].file}`}
                 type="application/pdf"
+            />
+            <embed
+                className="rounded-xl w-4/5 h-[30rem] mx-auto mt-12"
+                src={`${url}/Materi/video/${materi[0].video}`}
             />
         </SubLayoutGuru>
     );

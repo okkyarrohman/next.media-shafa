@@ -48,6 +48,14 @@ class MateriGuruController extends Controller
             $materis->file = $fileName;
         }
 
+        if ($request->hasFile('video')) {
+            $video = $request->file('video');
+            $extension = $video->getClientOriginalName();
+            $videoName = date('YmdHis') . "." . $extension;
+            $video->move(storage_path('app/public/Materi/video/'), $videoName);
+            $materis->video = $videoName;
+        }
+
         $materis->save();
 
         return redirect()->route('materi-guru.index');
@@ -90,6 +98,10 @@ class MateriGuruController extends Controller
 
         if (Storage::exists('public/Materi/file/' . $materis->file)) {
             Storage::delete('public/Materi/file/' . $materis->file);
+        }
+
+        if (Storage::exists('public/Materi/video/' . $materis->video)) {
+            Storage::delete('public/Materi/video/' . $materis->video);
         }
 
         $materis->delete();

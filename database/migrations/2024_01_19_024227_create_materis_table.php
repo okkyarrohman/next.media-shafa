@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nama')->nullable();
             $table->string('file')->nullable();
+            $table->string('video')->nullable();
             $table->string('status')->nullable();
             $table->timestamps();
         });
