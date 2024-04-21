@@ -11,12 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('materis', function (Blueprint $table) {
-            $table->id();
-            $table->string('nama')->nullable();
-            $table->string('file')->nullable();
-            $table->string('status')->nullable();
-            $table->timestamps();
+        Schema::table('materis', function (Blueprint $table) {
+            $table->string('link_video')->nullable();
         });
     }
 
@@ -25,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('materis');
+        Schema::table('materis', function (Blueprint $table) {
+            $table->dropColumn('link_video')->nullable();
+        });
     }
 };
