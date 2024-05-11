@@ -25,6 +25,8 @@ export default function DetailHasilProyekGuru({ auth }) {
         });
     }
 
+    console.log(filteredHasilProyeksById);
+
     const handleStepProyekClick = (step, id) => {
         localStorage.setItem("CURRENT_STEP_PROYEK", step);
         router.visit(`/hasil-proyek/${id}/edit`);
@@ -253,7 +255,20 @@ export default function DetailHasilProyekGuru({ auth }) {
             </table>
             <button
                 type="button"
-                className="text-lg px-8 py-2.5 mt-8 bg-[#F26969] rounded-full block w-fit ml-auto"
+                disabled={
+                    filteredHasilProyeksById[0].answer1 == null ||
+                    filteredHasilProyeksById[0].answer2 == null ||
+                    filteredHasilProyeksById[0].answer3 == null ||
+                    filteredHasilProyeksById[0].answer4 == null
+                }
+                className={`text-lg px-8 py-2.5 mt-8 rounded-full block w-fit ml-auto ${
+                    filteredHasilProyeksById[0].answer1 == null ||
+                    filteredHasilProyeksById[0].answer2 == null ||
+                    filteredHasilProyeksById[0].answer3 == null ||
+                    filteredHasilProyeksById[0].answer4 == null
+                        ? "bg-gray-300 text-white cursor-not-allowed"
+                        : "bg-[#F26969]"
+                }`}
                 onClick={() =>
                     handleStepProyekClick(
                         "nilai",

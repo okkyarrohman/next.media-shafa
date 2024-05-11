@@ -9,6 +9,8 @@ export default function NilaiHasilProyek({ auth }) {
     const { hasilProyeks } = usePage().props;
     const currentStep = localStorage.getItem("CURRENT_STEP_PROYEK");
 
+    console.log(hasilProyeks);
+
     const { data, setData, patch } = useForm({
         konfirmasi1: hasilProyeks[0].konfirmasi1,
         konfirmasi2: hasilProyeks[0].konfirmasi2,
@@ -28,13 +30,15 @@ export default function NilaiHasilProyek({ auth }) {
             <Head title="Proyek" />
             <div className="flex items-start mb-24">
                 <BackButton />
-                <h1 className="font-medium text-4xl text-center w-full">
-                    TAHAP {currentStep} <br />
-                    {hasilProyeks[0].proyek[`proses${currentStep}`]} <br />
-                    <span className="text-2xl text-first-light">
-                        {hasilProyeks[0].user.name}
-                    </span>
-                </h1>
+                {currentStep != "nilai" && (
+                    <h1 className="font-medium text-4xl text-center w-full">
+                        TAHAP {currentStep} <br />
+                        {hasilProyeks[0].proyek[`proses${currentStep}`]} <br />
+                        <span className="text-2xl text-first-light">
+                            {hasilProyeks[0].user.name}
+                        </span>
+                    </h1>
+                )}
             </div>
             {currentStep == 1 && (
                 <textarea
@@ -47,15 +51,16 @@ export default function NilaiHasilProyek({ auth }) {
                     disabled
                 ></textarea>
             )}
-            {currentStep != 1 && (
-                <embed
-                    className="rounded-xl w-4/5 h-[60rem] mx-auto mb-24"
-                    src={`${url}/HasilProyek/answer${currentStep}/${
-                        hasilProyeks[0][`answer${currentStep}`]
-                    }`}
-                    type="application/pdf"
-                />
-            )}
+            {currentStep != 1 ||
+                (currentStep != "nilai" && (
+                    <embed
+                        className="rounded-xl w-4/5 h-[60rem] mx-auto mb-24"
+                        src={`${url}/HasilProyek/answer${currentStep}/${
+                            hasilProyeks[0][`answer${currentStep}`]
+                        }`}
+                        type="application/pdf"
+                    />
+                ))}
             <form className="w-4/5 mx-auto">
                 {currentStep == 1 && (
                     <OptionKonfirmasiProyek
