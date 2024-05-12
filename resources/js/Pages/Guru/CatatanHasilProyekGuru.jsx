@@ -40,29 +40,9 @@ export default function CatatanHasilProyekGuru({ auth }) {
                     </h1>
                 )}
             </div>
-            {currentStep == 1 && (
-                <textarea
-                    className="w-4/5 mb-24 block mx-auto border border-black bg-transparent rounded-lg"
-                    placeholder="Masukkan Catatan..."
-                    name="answer1"
-                    id="answer1"
-                    rows="10"
-                    value={hasilProyeks[0].answer1}
-                    disabled
-                ></textarea>
-            )}
-            {currentStep != 1 ||
-                (currentStep != "nilai" && (
-                    <embed
-                        className="rounded-xl w-4/5 h-[60rem] mx-auto mb-24"
-                        src={`${url}/HasilProyek/answer${currentStep}/${
-                            hasilProyeks[0][`answer${currentStep}`]
-                        }`}
-                        type="application/pdf"
-                    />
-                ))}
+
             <form className="w-4/5 mx-auto">
-                {currentStep == "catatan" && (
+                {currentStep == "nilai" && (
                     <div className="bg-white rounded-xl p-8">
                         <div className="mb-4">
                             <label
