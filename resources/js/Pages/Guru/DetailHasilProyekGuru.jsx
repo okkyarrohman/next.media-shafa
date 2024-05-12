@@ -263,7 +263,7 @@ export default function DetailHasilProyekGuru({ auth }) {
                 className={`text-lg px-8 py-2.5 mt-8 rounded-full block w-fit ml-auto bg-[#F26969]`}
                 onClick={() =>
                     handleStepEditCatatan(
-                        "catatan",
+                        "nilai",
                         filteredHasilProyeksById[0].id
                     )
                 }
