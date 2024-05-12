@@ -62,37 +62,8 @@ export default function CatatanHasilProyekGuru({ auth }) {
                     />
                 ))}
             <form className="w-4/5 mx-auto">
-                {currentStep == 1 && (
-                    <OptionKonfirmasiProyek
-                        id="konfirmasi1"
-                        selectedValue={data.konfirmasi1}
-                        onChange={(e) => setData("konfirmasi1", e.target.value)}
-                    />
-                )}
-                {currentStep == 2 && (
-                    <OptionKonfirmasiProyek
-                        id="konfirmasi2"
-                        selectedValue={data.konfirmasi2}
-                        onChange={(e) => setData("konfirmasi2", e.target.value)}
-                    />
-                )}
-                {currentStep == 3 && (
-                    <OptionKonfirmasiProyek
-                        id="konfirmasi3"
-                        selectedValue={data.konfirmasi3}
-                        onChange={(e) => setData("konfirmasi3", e.target.value)}
-                    />
-                )}
-                {currentStep == 4 && (
-                    <OptionKonfirmasiProyek
-                        id="konfirmasi4"
-                        selectedValue={data.konfirmasi4}
-                        onChange={(e) => setData("konfirmasi4", e.target.value)}
-                    />
-                )}
-                {currentStep == "nilai" && (
+                {currentStep == "catatan" && (
                     <div className="bg-white rounded-xl p-8">
-
                         <div className="mb-4">
                             <label
                                 className="block text-3xl font-semibold mb-2"
