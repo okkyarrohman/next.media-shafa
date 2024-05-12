@@ -50,7 +50,7 @@ class HasilProyekGuruController extends Controller
      */
     public function edit(string $id)
     {
-        $hasilProyeks = HasilProyek::where('id', $id)->with(['user','proyek'])->get();
+        $hasilProyeks = HasilProyek::where('id', $id)->with(['user', 'proyek'])->get();
 
         return Inertia::render('Guru/NilaiHasilProyekGuru', [
             'hasilProyeks' => $hasilProyeks,
@@ -70,6 +70,25 @@ class HasilProyekGuruController extends Controller
         $proyeks->nilai = $request->nilai;
         $proyeks->catatan = $request->catatan;
 
+        $proyeks->save();
+
+        return redirect()->route('hasil-proyek.index');
+    }
+
+
+    public function editCatatan(string $id)
+    {
+        $hasilProyeks = HasilProyek::where('id', $id)->with(['user', 'proyek'])->get();
+
+        return Inertia::render('Guru/CatatanHasilProyekGuru', [
+            'hasilProyeks' => $hasilProyeks
+        ]);
+    }
+
+    public function updateCatatan(Request $request, string $id)
+    {
+        $proyeks = HasilProyek::find($id);
+        $proyeks->catatan = $request->catatan;
         $proyeks->save();
 
         return redirect()->route('hasil-proyek.index');

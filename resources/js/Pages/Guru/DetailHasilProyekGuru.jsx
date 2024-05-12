@@ -32,6 +32,11 @@ export default function DetailHasilProyekGuru({ auth }) {
         router.visit(`/hasil-proyek/${id}/edit`);
     };
 
+    const handleStepEditCatatan = (step, id) => {
+        localStorage.setItem("CURENT_STEP_PROYEK", step);
+        router.visit(`/hasil-proyek/${id}/edit-catatan`);
+    };
+
     return (
         <SubLayout auth={auth}>
             <Head title="Proyek" />
@@ -253,6 +258,18 @@ export default function DetailHasilProyekGuru({ auth }) {
                     </tr>
                 </tbody>
             </table>
+            <button
+                type="button"
+                className={`text-lg px-8 py-2.5 mt-8 rounded-full block w-fit ml-auto bg-[#F26969]`}
+                onClick={() =>
+                    handleStepEditCatatan(
+                        "catatan",
+                        filteredHasilProyeksById[0].id
+                    )
+                }
+            >
+                Beri Catatan
+            </button>
             <button
                 type="button"
                 disabled={
