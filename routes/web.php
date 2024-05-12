@@ -69,6 +69,8 @@ Route::group(['middleware' => 'role:guru'], function () {
         'hasil-kuis' => HasilGuruController::class,
     ]);
 
+    Route::get('/hasil-proyek/{id}/edit-catatan', [HasilProyekGuruController::class, 'editCatatan'])->name('editCatata.proyek');
+    Route::patch('/hasil-proyek/{id}/update-catatan', [HasilProyekGuruController::class, 'updateCatatan'])->name('updateCatatan.proyek');
     Route::get('/test-guru', [DashboardGuruController::class, 'countKuisProyek'])->name('test-guru');
 });
 
