@@ -38,6 +38,7 @@ class MateriGuruController extends Controller
     {
         $materis = new Materi();
         $materis->nama = $request->nama;
+        $materis->link_video = $request->link_video;
 
         // Request column input type file
         if ($request->hasFile('file')) {
@@ -90,6 +91,10 @@ class MateriGuruController extends Controller
 
         if (Storage::exists('public/Materi/file/' . $materis->file)) {
             Storage::delete('public/Materi/file/' . $materis->file);
+        }
+
+        if (Storage::exists('public/Materi/video/' . $materis->video)) {
+            Storage::delete('public/Materi/video/' . $materis->video);
         }
 
         $materis->delete();

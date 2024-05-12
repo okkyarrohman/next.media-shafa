@@ -8,6 +8,7 @@ export default function TambahMateriGuru({ auth }) {
     const { data, setData, post } = useForm({
         nama: "",
         file: null,
+        link_video: "",
         status: "",
     });
 
@@ -58,6 +59,23 @@ export default function TambahMateriGuru({ auth }) {
                     File Materi
                 </label>
                 <Upload onDrop={handleDrop} uploadedFiles={uploadedFiles} />
+                <div className="my-4">
+                    <label
+                        className="block text-3xl font-semibold mb-2"
+                        htmlFor="link_video"
+                    >
+                        Link Video Materi
+                    </label>
+                    <TextInput
+                        id="link_video"
+                        type="text"
+                        name="link_video"
+                        placeholder="Masukkan Link Video Materi..."
+                        className="w-full border-[#353535] bg-transparent"
+                        value={data.link_video}
+                        onChange={(e) => setData("link_video", e.target.value)}
+                    />
+                </div>
                 <button
                     className="bg-first text-white py-3 px-24 rounded font-semibold text-2xl w-fit mx-auto block my-12"
                     onClick={handleFormSubmit}
